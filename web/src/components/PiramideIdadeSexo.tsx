@@ -1,0 +1,90 @@
+/** Pirâmide etária compacta (F6 leva 2, pendência 10b): homens à esquerda, mulheres à
+ *  direita, mesma cor por sexo (slots 1 e 5 da paleta categórica de 8), com uma referência
+ *  (ex.: imigrantes do destino, ou residentes do município) sobreposta como contorno
+ *  tracejado. Valores em % do total do grupo. */
+import { prepararPiramide } from "../lib/piramide";
+import { CATEGORICO_8, cor as corDeCategoria } from "../lib/paletas";
+import { num1 } from "../lib/format";
+
+const COR_HOMENS = CATEGORICO_8[0];
+const COR_MULHERES = CATEGORICO_8[4];
+
+interface Props {
+  titulo: React.ReactNode;
+  rotuloGrupo: string;
+  valoresGrupo: Record<string, number>;
+  rotuloReferencia?: string;
+  valoresReferencia?: Record<string, number>;
+  escuro: boolean;
+  /** F12.5: trava a escala entre vários painéis (ex.: os 5 small multiples por edição da
+   *  seção "Ao longo dos censos", docs/design_serie_censos.md, 3.4-b). Sem esta prop, cada
+   *  pirâmide reescala a partir do próprio maior valor e a comparação visual entre edições
+   *  mente -- o mesmo erro que uma escala de cor por edição cometeria no mapa. Quando
+   *  ausente, mantém o comportamento atual (reescala pelo maior valor do próprio painel). */
+  maiorPct?: number;
+}
+
+export function PiramideIdadeSexo({ titulo, rotuloGrupo, valoresGrupo, rotuloReferencia,
+                                    valoresReferencia, escuro, maiorPct: maiorPctFixo }: Props) {
+  const grupo = prepararPiramide(valoresGrupo);
+  const ref = valoresReferencia ? prepararPiramide(valoresReferencia) : null;
+  if (grupo.total <= 0) return null;
+
+  // convenção usual da pirâmide etária: faixa mais velha no topo, mais nova embaixo
+  // (prepararPiramide devolve as faixas em ordem crescente; invertemos só na exibição).
+  const pontosExibidos = [...grupo.pontos].reverse();
+  const refExibidos = ref ? [...ref.pontos].reverse() : null;
+
+  const maiorPct = maiorPctFixo ?? Math.max(
+    ...grupo.pontos.map((p) => Math.max(p.pctHomens, p.pctMulheres)),
+    ...(ref?.pontos.map((p) => Math.max(p.pctHomens, p.pctMulheres)) ?? [0]),
+    1,
+  );
+  const larguraPct = (v: number) => `${(v / maiorPct) * 100}%`;
+
+  const corH = corDeCategoria(COR_HOMENS, escuro);
+  const corM = corDeCategoria(COR_MULHERES, escuro);
+
+  // `titulo` pode ser um nó React (ex.: rótulo envolvido em <Termo>) -- na string de
+  // aria-label, entra só quando é texto puro; caso contrário, o rótulo do grupo já basta.
+  const tituloTexto = typeof titulo === "string" ? titulo : "";
+  const rotuloAria = [
+    `${tituloTexto}. ${rotuloGrupo}:`,
+    ...pontosExibidos.map((p) =>
+      `${p.rotulo} anos, homens ${num1(p.pctHomens)}%, mulheres ${num1(p.pctMulheres)}%`),
+    ref && rotuloReferencia ? `Referência (${rotuloReferencia}):` : "",
+    ...(refExibidos?.map((p) =>
+      `${p.rotulo} anos, homens ${num1(p.pctHomens)}%, mulheres ${num1(p.pctMulheres)}%`) ?? []),
+  ].filter(Boolean).join(" ");
+
+  return (
+    <section className="perfil">
+      <h4>{titulo}</h4>
+      <div className="piramide" role="img" aria-label={rotuloAria}>
+        {pontosExibidos.map((p, i) => {
+          const r = refExibidos?.[i];
+          return (
+            <div className="piramide-linha" key={p.chave}>
+              <div className="piramide-barra homens">
+                <span className="fill" style={{ width: larguraPct(p.pctHomens), background: corH }} />
+                {r && <span className="ref" style={{ width: larguraPct(r.pctHomens) }} />}
+              </div>
+              <div className="piramide-faixa">{p.rotulo}</div>
+              <div className="piramide-barra mulheres">
+                <span className="fill" style={{ width: larguraPct(p.pctMulheres), background: corM }} />
+                {r && <span className="ref" style={{ width: larguraPct(r.pctMulheres) }} />}
+              </div>
+            </div>
+          );
+        })}
+      </div>
+      <ul className="piramide-legenda">
+        <li><span className="amostra pequena" style={{ background: corH }} /> Homens ({rotuloGrupo})</li>
+        <li><span className="amostra pequena" style={{ background: corM }} /> Mulheres ({rotuloGrupo})</li>
+        {ref && rotuloReferencia && (
+          <li><span className="amostra pequena" style={{ border: "1.5px dashed var(--ink)", background: "transparent" }} /> {rotuloReferencia}</li>
+        )}
+      </ul>
+    </section>
+  );
+}

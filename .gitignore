@@ -1,0 +1,79 @@
+# --- SIGILO: microdados de acesso controlado do IBGE nunca entram no repositório ---
+data/raw
+data/raw/**
+# symlink por edição (ex.: data/raw2010, data/raw2000, data/raw1991 -> microdados de cada
+# censo); mesma regra do data/raw. O prefixo é genérico de propósito: o padrão antigo por
+# década (data/raw19[0-9][0-9]) deixava passar variantes de nome que o Finder e o iCloud
+# criam sozinhos ao resolver conflito, como "data/raw2010 2" — um symlink que expõe o
+# caminho dos microdados controlados. Nada legítimo do repositório começa com "data/raw".
+data/raw*
+data/raw*/**
+data/interim/
+data/geo/raw/
+*.csv
+*.CSV
+# exceção: tabela de configuração do projeto (núcleo de cada RM), derivada de códigos
+# públicos do IBGE e de agregados populacionais — não contém microdado algum
+!pipeline/rm_nucleo.csv
+# exceção: genealogia municipal (F12.1), derivada só de malhas municipais públicas do IBGE
+# (data/geo/raw/**) por sobreposição espacial — metadado de comparabilidade territorial, não
+# microdado algum. Ver pipeline/build_genealogia.py e docs/genealogia.md.
+!pipeline/genealogia_municipios.csv
+*.txt.gz
+docs/termos/*
+!docs/termos/README.md
+# data/processed (parquet, json, geo/*.topojson, geo/*.parquet e o carimbo .gate_ok) É
+# VERSIONADO: são os agregados já aprovados pelo gate de revelação (R1-R9), e o CI precisa
+# deles para publicar o site sem acesso aos microdados. O hook pre-commit (ver
+# scripts/pre-commit) recusa o commit se data/processed estiver em stage sem
+# .gate_ok/verify_gate.py verde -- não remover esse gate ao tocar neste arquivo.
+# web/public/data é uma cópia local de build (gerada por `npm run sync-data`), não commitada.
+web/public/data/
+# ambiente
+.venv/
+__pycache__/
+*.pyc
+.pytest_cache/
+.DS_Store
+node_modules/
+.duckdb/
+*.duckdb
+*.duckdb.wal
+
+# front-end
+web/dist/
+web/public/data/
+web/public/duckdb/
+
+# segredos e credenciais: nunca versionar (o site é público)
+.env
+.env.*
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*.json
+service-account*.json
+
+# correspondência e documentação técnica enviadas ao IBGE: contêm dados pessoais do titular
+# (CPF, protocolo). Nunca versionar; só o README de docs/ibge/ é rastreado.
+docs/ibge/*
+!docs/ibge/README.md
+Documentacao_Tecnica_*.pdf
+
+# documentos jurídicos e de compliance (parecer, carta de solicitação ao IBGE, pedido de
+# takedown): contêm dados pessoais do titular e posição jurídica em elaboração. Como o
+# repositório é publicado como site (atlas-da-migracao.github.io), nada aqui pode ser
+# versionado -- e a pasta não estava ignorada, ou seja, um `git add -A` a commitaria.
+legal/
+
+# Cache interno da análise gravitacional: contém a grade municipal completada, com massa
+# imputada nas células que o gate suprimiu. Insumo de estimação, nunca publicável.
+analises/gravitacional/cache/
+node_modules/
+web/dist/
+web/public/data/
+web/public/duckdb/
+.venv/
+__pycache__/
+.pytest_cache/

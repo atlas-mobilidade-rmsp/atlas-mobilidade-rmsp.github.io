@@ -1,0 +1,7 @@
+cff-version: 1.2.0
+title: "Atlas da Mobilidade na RMSP (1977–2023)"
+authors:
+  - family-names: Sobreira
+    given-names: Daniel Pessini
+license: MIT
+message: "Dados sob CC BY 4.0 (ver LICENSE-DADOS.md)."

@@ -5,7 +5,7 @@ import { num, num1, num2 } from "../lib/format";
 import { BarrasDimensao } from "./Barras";
 import { SerieDoPar } from "./SerieDoPar";
 import { useStore } from "../state/store";
-import { AbaEstrutura, AbaFluxos, AbaPopulacao } from "./AbasUnidade";
+import { AbaAcessibilidade, AbaEstrutura, AbaFluxos, AbaPopulacao } from "./AbasUnidade";
 
 const fmt = (id: string, v: number | null) => {
   const m = METRICAS.find((x) => x.id === id); if (v == null || !m) return "—";
@@ -13,7 +13,7 @@ const fmt = (id: string, v: number | null) => {
 };
 export const Selo = ({ p }: { p: string }) => <span className={`selo ${p}`}>{ROTULO_PRECISAO[p as Precisao] ?? p}</span>;
 
-type Aba = "resumo" | "populacao" | "estrutura" | "fluxos";
+type Aba = "resumo" | "populacao" | "estrutura" | "acessibilidade" | "fluxos";
 export function PainelUnidade({ u, ind, nivel, ed, tipo, nomes }: { u: Unidade; ind?: Indicadores; nivel: Nivel; ed: number; tipo: TipoFluxo; nomes: Map<string, string> }) {
   const [perfil, setPerfil] = useState<Cat[]>([]);
   const [aba, setAba] = useState<Aba>("resumo");
@@ -23,11 +23,12 @@ export function PainelUnidade({ u, ind, nivel, ed, tipo, nomes }: { u: Unidade; 
     <article className="painel" aria-label={`Unidade ${u.nome}`}>
       <header><h3>{u.nome}</h3><button className="fechar" aria-label="Limpar seleção" onClick={() => set({ unidade: null, par: null })}>×</button></header>
       <div className="seg pequeno abas" role="tablist" aria-label="Seções da unidade">
-        {([["resumo", "Resumo"], ["populacao", "População"], ["estrutura", "Estrutura"], ["fluxos", "Fluxos"]] as [Aba, string][]).map(([id, r]) =>
+        {([["resumo", "Resumo"], ["populacao", "População"], ["estrutura", "Estrutura"], ["acessibilidade", "Acesso"], ["fluxos", "Fluxos"]] as [Aba, string][]).map(([id, r]) =>
           <button key={id} role="tab" aria-selected={aba === id} className={aba === id ? "ativo" : ""} onClick={() => setAba(id)}>{r}</button>)}
       </div>
       {aba === "populacao" && <AbaPopulacao nivel={nivel} ed={ed} codigo={u.codigo} />}
       {aba === "estrutura" && <AbaEstrutura nivel={nivel} ed={ed} codigo={u.codigo} ind={ind} />}
+      {aba === "acessibilidade" && <AbaAcessibilidade nivel={nivel} ed={ed} codigo={u.codigo} />}
       {aba === "fluxos" && <AbaFluxos nivel={nivel} ed={ed} tipo={tipo} codigo={u.codigo} nomes={nomes} />}
       {aba !== "resumo" ? null : !ind ? <p className="nota">Sem estimativa para esta unidade nesta pesquisa.</p> : (<>
         <dl className="kpis">

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { censoUnidade, cnefeUnidade, gravitacional, vizinhos, type Linha } from "../db/queries";
+import { acessibilidadeUnidade, censoUnidade, cnefeUnidade, gravitacional, vizinhos, type Linha } from "../db/queries";
 import { GraficoLinhas } from "./GraficoLinhas";
 import { num, num1, num2 } from "../lib/format";
 import type { Nivel, TipoFluxo } from "../lib/tipos";
@@ -72,4 +72,22 @@ export function AbaFluxos({ nivel, ed, tipo, codigo, nomes }: { nivel: Nivel; ed
     </section>
   );
   return <div className="aba">{bloco("saem", "Para onde vão")}{bloco("chegam", "De onde vêm")}</div>;
+}
+
+const MODOS_AOP: [string, string][] = [["tp", "Transporte público"], ["auto", "Automóvel"], ["ape", "A pé"]];
+export function AbaAcessibilidade({ nivel, ed, codigo }: { nivel: Nivel; ed: number; codigo: string }) {
+  const [d, setD] = useState<Linha[] | undefined>(undefined);
+  useEffect(() => { setD(undefined); acessibilidadeUnidade(nivel, ed, codigo).then(setD); }, [nivel, ed, codigo]);
+  if (d === undefined) return <p className="nota">carregando…</p>;
+  if (d.length === 0) return <p className="nota">Sem acessibilidade calculada para esta unidade: o AOP/IPEA (2019) cobre só o município de São Paulo (transporte público, carro e a pé) e Guarulhos (carro e a pé), e exige ≥ 90% da população da unidade dentro da cobertura.{nivel === "zona" && ed !== 2023 ? " Para zonas, só o zoneamento de 2023." : ""}</p>;
+  const v = (m: string, k: string) => d.find((x) => x.modo === m && x.medida === k)?.valor as number | undefined;
+  const linhas: [string, string, (x: number) => string][] = [["cma30", "Empregos em 30 min", num], ["cma60", "Empregos em 60 min", num], ["cma90", "Empregos em 90 min", num], ["cma60_saude", "Equipamentos de saúde em 60 min", num1], ["tmi_saude", "Tempo ao equipamento de saúde mais próximo (min)", num1], ["tmi_escola", "Tempo à escola mais próxima (min)", num1]];
+  return (
+    <div className="aba">
+      <table className="tabela"><thead><tr><th></th>{MODOS_AOP.map(([, r]) => <th key={r}>{r}</th>)}</tr></thead><tbody>
+        {linhas.map(([k, r, f]) => <tr key={k}><th scope="row">{r}</th>{MODOS_AOP.map(([m]) => <td key={m}>{v(m, k) != null ? f(v(m, k)!) : "—"}</td>)}</tr>)}
+      </tbody></table>
+      <p className="nota">Projeto Acesso a Oportunidades (IPEA), 2019, pico da manhã; média ponderada pela população (Censo 2010) dos hexágonos da unidade. Tempos e acesso não são comparáveis com o modelo gravitacional (distância).</p>
+    </div>
+  );
 }

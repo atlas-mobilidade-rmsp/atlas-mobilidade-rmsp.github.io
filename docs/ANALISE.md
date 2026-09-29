@@ -375,24 +375,26 @@ Pesquisa Origem e Destino do Metrô-SP (1977, 1987, 1997, 2007, 2017, 2023) harm
 
 ### 3.20 Acessibilidade por transporte público
 
-**Pergunta.** Quantos empregos se alcançam em 30/45/60 min de transporte público, por área?
+**Pergunta.** Quantos empregos se alcançam em 60 min de transporte público, e isso depende da renda de quem mora onde?
 
-**Status.** aguarda dados · tema recorrente
+**Status.** parcial · tema recorrente
 
-**Indicadores.** cma30, cma45, cma60
+**Indicadores.** cma30, cma60, cma90, tmi_saude, tmi_escola
 
-**Vista.** `?modo=mapa`
+**Vista.** `?modo=mapa&ed=2023&n=muni&m=jobs_housing`
 
-**Achado.** Aguardando a camada de acessibilidade (AOP/IPEA e GTFS): sem ela, o atlas mede acesso só por distância (pergunta 6).
+**Achado.** Em São Paulo (2019), os moradores das áreas do décimo de renda mais pobre alcançam em média 167.612 empregos em 60 minutos de transporte público, contra 1.640.337 nas áreas do décimo mais rico (9,8 vezes mais). De carro, o município como um todo alcança 2.604.955 empregos no mesmo tempo, contra 678.626 de transporte público.
 
 **Literatura.**
 - Boisjoly, G.; Moreno-Monroy, A. I.; El-Geneidy, A. (2017). *Informality and accessibility to jobs by public transit: Evidence from the São Paulo Metropolitan Region*. Journal of Transport Geography 64, 89-96. doi:10.1016/j.jtrangeo.2017.08.011
 
 **Comparabilidade.**
-- Requer GTFS de SPTrans/EMTU/Metrô/CPTM ou AOP-IPEA (2017–2019).
+- AOP/IPEA cobre só São Paulo (transporte público, carro, a pé) e Guarulhos (carro, a pé); sem transporte público em Guarulhos e nos demais municípios.
+- Acessibilidade de 2019 (pico da manhã) e população/renda de 2010 (do próprio AOP): vintages diferentes da OD.
+- Média ponderada pela população dos hexágonos H3 (res. 9) cujo centroide cai na unidade; só unidades com ≥ 90% de cobertura.
 
 **Pendências.**
-- F6: AOP-IPEA, GTFS.
+- GTFS próprio da RMSP (SPTrans/EMTU/Metrô/CPTM) para cobrir os demais municípios e 2023 — F6b.
 
 ### 3.21 Empregos formais e oferta de trabalho
 

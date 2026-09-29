@@ -93,3 +93,8 @@ export async function vizinhos(ed: number, nivel: Nivel, tipo: TipoFluxo, codigo
   const b = await consultar<any>(`select 'chegam' sentido, origem outro, total, n, precisao ${base} and destino=${lit(codigo)} order by total desc limit ${top}`);
   return [...a, ...b];
 }
+export async function acessibilidadeUnidade(nivel: Nivel, ed: number, codigo: string): Promise<Linha[]> {
+  if (nivel === "zona" && ed !== 2023) return [];
+  const t = await parquet("acessibilidade/acess_2019.parquet");
+  return consultar<Linha>(`select modo, medida, valor, cobertura from ${t} where nivel=${lit(nivel)} and edicao=${nivel === "zona" ? 2023 : 0} and codigo=${lit(codigo)}`);
+}

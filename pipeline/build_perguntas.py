@@ -8,6 +8,8 @@ Um valor é um objeto {fonte, ..., fmt}:
   fonte=topshare {nivel, ed, campo, n}                   -> parcela das n maiores unidades no total do campo
   fonte=params   {nivel, ed, imped, caminho}             -> serie/gravitacional_params.json
   fonte=censo    {ano_censo, campo, nivel}              -> média ponderada por população de censo_por_unidade (nivel muni)
+  fonte=aop_decil {modo, medida, decil}                  -> acessibilidade/acess_decil_2019.parquet
+  fonte=aop_unidade {nivel, codigo, modo, medida}        -> acessibilidade/acess_2019.parquet
   fonte=expr     {op: ratio|diff|pct_change|mult, a, b}  -> combina outros valores do mesmo achado
 fmt: int | dec1 | dec2 | pct0 | pct1 (valor em fração -> %) | pp1 (pontos percentuais)
 """
@@ -65,6 +67,18 @@ def calcula(v: dict, ja: dict) -> float:
         return float(t.head(v["n"]).sum() / t.sum())
     if f == "params":
         return float(_get(_params()[str(v["ed"])][v["nivel"]][v["imped"]], v["caminho"]))
+    if f == "aop_decil":
+        d = pd.read_parquet(PROCESSED / "acessibilidade" / "acess_decil_2019.parquet")
+        r = d[(d.modo == v["modo"]) & (d.medida == v["medida"]) & (d.decil == v["decil"])]
+        if len(r) != 1:
+            raise KeyError(f"aop_decil: {len(r)} linhas para {v}")
+        return float(r.valor.iloc[0])
+    if f == "aop_unidade":
+        d = pd.read_parquet(PROCESSED / "acessibilidade" / "acess_2019.parquet")
+        r = d[(d.nivel == v["nivel"]) & (d.codigo == str(v["codigo"])) & (d.modo == v["modo"]) & (d.medida == v["medida"])]
+        if len(r) != 1:
+            raise KeyError(f"aop_unidade: {len(r)} linhas para {v}")
+        return float(r.valor.iloc[0])
     if f == "censo":
         c = pd.read_parquet(PROCESSED / "censo" / "censo_por_unidade.parquet")
         c = c[(c.nivel == v.get("nivel", "muni")) & (c.ano_censo == v["ano_censo"])].dropna(subset=[v["campo"]])

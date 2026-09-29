@@ -102,3 +102,14 @@ def test_perguntas_json():
         assert "{" not in p["achado"]["texto"], p["slug"]            # nenhum placeholder sem resolver
         if p["status"] != "aguarda_dados":
             assert p["achado"]["valores"] and all(v["valor"] == v["valor"] for v in p["achado"]["valores"].values())
+
+
+def test_aop_acessibilidade():
+    u = pd.read_parquet(PROCESSED / "acessibilidade" / "acess_2019.parquet")
+    assert u.cobertura.between(0.9, 1.25).all()
+    assert set(u[u.nivel == "muni"].codigo) <= {"3550308", "3518800"}
+    p = u[(u.nivel == "amc146") & (u.modo == "tp")].pivot_table(index="codigo", columns="medida", values="valor")
+    assert (p.cma30 <= p.cma60 + 1e-6).all() and (p.cma60 <= p.cma90 + 1e-6).all()          # janelas cumulativas monotônicas
+    d = pd.read_parquet(PROCESSED / "acessibilidade" / "acess_decil_2019.parquet")
+    tp = d[(d.modo == "tp") & (d.medida == "cma60")].set_index("decil").valor
+    assert tp.loc[10] > tp.loc[1]                                                             # ricos alcançam mais empregos por TP

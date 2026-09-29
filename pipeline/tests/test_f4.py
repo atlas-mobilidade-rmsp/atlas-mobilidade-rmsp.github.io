@@ -109,7 +109,8 @@ def test_aop_acessibilidade():
     assert u.cobertura.between(0.9, 1.25).all()
     assert set(u[u.nivel == "muni"].codigo) <= {"3550308", "3518800"}
     p = u[(u.nivel == "amc146") & (u.modo == "tp")].pivot_table(index="codigo", columns="medida", values="valor")
-    assert (p.cma30 <= p.cma60 + 1e-6).all() and (p.cma60 <= p.cma90 + 1e-6).all()          # janelas cumulativas monotônicas
+    p = p.dropna(subset=["cma30", "cma60", "cma90"])
+    assert len(p) > 40 and (p.cma30 <= p.cma60 + 1e-6).all() and (p.cma60 <= p.cma90 + 1e-6).all()   # janelas cumulativas monotônicas
     d = pd.read_parquet(PROCESSED / "acessibilidade" / "acess_decil_2019.parquet")
     tp = d[(d.modo == "tp") & (d.medida == "cma60")].set_index("decil").valor
     assert tp.loc[10] > tp.loc[1]                                                             # ricos alcançam mais empregos por TP

@@ -1,70 +1,14 @@
 #!/bin/sh
-# Bloqueia qualquer tentativa de commitar dados brutos/intermediários ou CSVs (sigilo IBGE),
-# e exige o gate de revelação verde para qualquer commit que toque data/processed.
-# Instalado a partir de scripts/pre-commit -- ver README.md ("Como rodar") para reinstalar
-# depois de um clone novo (hooks não viajam com o git clone).
+# Bloqueia dados brutos, CSVs e segredos; exige o gate P1–P6 verde para commits que tocam data/processed.
+# Instalar: cp scripts/pre-commit .git/hooks/pre-commit && chmod +x .git/hooks/pre-commit
 staged=$(git diff --cached --name-only --diff-filter=ACMR)
-# ^data/raw sem barra final: um symlink de edição entra no índice como "data/raw2010", sem
-# barra, e escapava do padrão antigo que exigia "data/raw2010/". O mesmo vale para as
-# variantes de nome criadas por Finder/iCloud ("data/raw2010 2"). Bloquear o prefixo inteiro
-# é o lado seguro do erro -- nada legítimo do repositório começa com "data/raw".
-blocked=$(printf '%s\n' "$staged" | grep -E '^(data/raw|data/interim/|data/geo/raw/)|\.(csv|CSV)$|(^|/)\.env(\.|$)|\.(pem|key|p12|pfx)$|credentials.*\.json$' \
-          | grep -vE '^pipeline/(rm_nucleo|genealogia_municipios)\.csv$' || true)
-# docs/termos e docs/ibge (termos assinados, documentação técnica e correspondência com o IBGE,
-# que contêm dados pessoais do titular): tudo bloqueado, exceto o README de cada pasta
-termos=$(printf '%s\n' "$staged" | grep -E '^docs/(termos|ibge)/|^Documentacao_Tecnica_.*\.pdf$' | grep -vE '^docs/(termos|ibge)/README\.md$' || true)
-blocked="$blocked
-$termos"
-blocked=$(printf '%s\n' "$blocked" | sed '/^$/d')
+blocked=$(printf '%s\n' "$staged" | grep -E '^(data/geo/raw/|data/raw|data/interim)|\.(csv|CSV|sav|SAV)$|(^|/)\.env(\.|$)|\.(pem|key|p12|pfx)$|credentials.*\.json$' || true)
 if [ -n "$blocked" ]; then
-  echo "ERRO (sigilo): arquivos bloqueados para commit:" >&2
+  echo "ERRO: arquivos bloqueados para commit:" >&2
   printf '%s\n' "$blocked" | sed 's/^/  - /' >&2
-  echo "Microdados de acesso controlado, intermediários, CSVs e arquivos de segredo (.env, chaves) nunca entram no repositório." >&2
   exit 1
 fi
-
-# data/processed só é commitado com o gate de revelação verificado de forma independente
-# (verify_gate.py recomputa os SHA-256 do carimbo .gate_ok e as checagens estruturais R1-R6
-# que não dependem de microdado -- ver pipeline/verify_gate.py). Cada edição tem seu próprio
-# gate (pipeline/edicoes.py, F7): arquivos direto em data/processed/* (parquet, .gate_ok,
-# meta.json etc. da edição 2022) usam o gate raiz, sem --dir -- comportamento original;
-# arquivos dentro de uma subpasta de edição (ex.: data/processed/2010/**) usam o gate próprio
-# dessa subpasta, verify_gate.py --dir data/processed/<edicao>.
-proc_raiz=$(printf '%s\n' "$staged" | grep -E '^data/processed/[^/]+$' || true)
-# candidatos a "subpasta de edição": 1o segmento depois de data/processed/. Nem todo 1o
-# segmento é uma edição -- data/processed/geo/* e data/processed/meta.json (raiz) pertencem
-# à edição 2022, sem gate próprio (usam o gate raiz, como proc_raiz acima). Uma pasta só é
-# tratada como edição própria se tiver .gate_ok nela mesma (1980, 1991, 2000, 2010, ...);
-# sem isso, geo/build.sh tocando data/processed/geo/*.topojson (edição 2022) reprovava aqui
-# procurando um data/processed/geo/.gate_ok que nunca existiu.
-candidatos=$(printf '%s\n' "$staged" | grep -E '^data/processed/[^/]+/' \
-            | sed -E 's#^data/processed/([^/]+)/.*#\1#' | sort -u)
-subpastas=""
-for c in $candidatos; do
-  [ -f "data/processed/$c/.gate_ok" ] && subpastas="$subpastas
-$c"
-  [ -f "data/processed/$c/.gate_ok" ] || proc_raiz="$proc_raiz
-data/processed/$c/"
-done
-if [ -n "$proc_raiz" ] || [ -n "$subpastas" ]; then
-  PY=.venv/bin/python
-  [ -x "$PY" ] || PY=python3
-
-  if [ -n "$proc_raiz" ]; then
-    if ! "$PY" pipeline/verify_gate.py; then
-      echo "ERRO (revelação): pipeline/verify_gate.py reprovou -- commit bloqueado." >&2
-      echo "Rode 'python pipeline/disclosure_check.py --versao <v>' e depois 'python pipeline/verify_gate.py' antes de comitar data/processed." >&2
-      exit 1
-    fi
-  fi
-
-  for sub in $subpastas; do
-    dir="data/processed/$sub"
-    if ! "$PY" pipeline/verify_gate.py --dir "$dir"; then
-      echo "ERRO (revelação): pipeline/verify_gate.py --dir $dir reprovou -- commit bloqueado." >&2
-      echo "Rode 'python pipeline/disclosure_check.py --edicao <edicao> --versao <v>' e depois 'python pipeline/verify_gate.py --dir $dir' antes de comitar $dir." >&2
-      exit 1
-    fi
-  done
+if printf '%s\n' "$staged" | grep -q '^data/processed/'; then
+  PY="${PYTHON:-python3}"
+  $PY -m pipeline.verify_gate || { echo "ERRO: gate P1–P6 não verificado (rode pipeline/gate_check.py)." >&2; exit 1; }
 fi
-exit 0

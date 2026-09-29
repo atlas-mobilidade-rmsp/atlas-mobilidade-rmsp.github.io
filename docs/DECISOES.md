@@ -12,3 +12,10 @@
    série histórica**, que segue em AMC-146/AMC-75/muni. As "8 regiões do Metrô" não foram adotadas (sem fonte local).
 8. **Trilhos.** GeoSampa `linha_metro`/`linha_trem` + estações (inclui CPTM na RMSP; monotrilho não vem como camada
    própria; linhas em obra/projetadas ficam em `situacao`). Contexto visual, não entra em indicadores.
+9. **F2 — núcleo.** `pipeline/{base,nucleo,perfis,pares_serie,gate_check,verify_gate}.py`. Unidades por ponta em todos os
+   níveis (`base.py`); domicílios/famílias vêm das próprias tabelas (em 1977, 5,6 % do peso de domicílios não tem
+   moradores listados). AMC-75 fica fora da igualdade de totais entre níveis (cobre só a área de 1977, ~98 % da pop.
+   em 2023). CV v1 = aproximação por pesos com deff = 1 (F2b calibra). `sub` só 1997+; `amc146` só 1987+.
+   Quintil de renda: renda familiar per capita r2023, ponderado por pessoa, por edição; sem renda → `nd`.
+   Limitações abertas: `pct_hibrido/remoto/app/moto` e raça (2023) e distância/coordenadas ficam para depois
+   (variáveis fora da série harmonizada); mediana ponderada de renda idem; `hansen_*`, `autocont` e gravidade são F4.

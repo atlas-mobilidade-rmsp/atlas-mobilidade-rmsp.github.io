@@ -1,0 +1,74 @@
+{
+ "1977": {
+  "area_parcial": true,
+  "amc146": false,
+  "amc75": true,
+  "sub": false,
+  "coordenadas": false,
+  "raca": false,
+  "hibrido": false,
+  "app": false,
+  "pandemia": false,
+  "grau_ins_5": true
+ },
+ "1987": {
+  "area_parcial": false,
+  "amc146": true,
+  "amc75": true,
+  "sub": false,
+  "coordenadas": false,
+  "raca": false,
+  "hibrido": false,
+  "app": false,
+  "pandemia": false,
+  "grau_ins_5": true
+ },
+ "1997": {
+  "area_parcial": false,
+  "amc146": true,
+  "amc75": true,
+  "sub": true,
+  "coordenadas": false,
+  "raca": false,
+  "hibrido": false,
+  "app": false,
+  "pandemia": false,
+  "grau_ins_5": false
+ },
+ "2007": {
+  "area_parcial": false,
+  "amc146": true,
+  "amc75": true,
+  "sub": true,
+  "coordenadas": true,
+  "raca": false,
+  "hibrido": false,
+  "app": false,
+  "pandemia": false,
+  "grau_ins_5": true
+ },
+ "2017": {
+  "area_parcial": false,
+  "amc146": true,
+  "amc75": true,
+  "sub": true,
+  "coordenadas": true,
+  "raca": false,
+  "hibrido": false,
+  "app": false,
+  "pandemia": false,
+  "grau_ins_5": true
+ },
+ "2023": {
+  "area_parcial": false,
+  "amc146": true,
+  "amc75": true,
+  "sub": true,
+  "coordenadas": true,
+  "raca": true,
+  "hibrido": true,
+  "app": true,
+  "pandemia": true,
+  "grau_ins_5": true
+ }
+}

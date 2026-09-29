@@ -1,0 +1,48 @@
+{
+ "versao_dados": "0.1.0",
+ "edicoes": [
+  1977,
+  1987,
+  1997,
+  2007,
+  2017,
+  2023
+ ],
+ "niveis": [
+  "zona",
+  "amc146",
+  "amc75",
+  "sub",
+  "muni"
+ ],
+ "rotulos": {
+  "niveis": {
+   "zona": "Zona OD",
+   "amc146": "AMC (1987–2023, 146)",
+   "amc75": "AMC (1977–2023, 75)",
+   "sub": "Subprefeitura / município",
+   "muni": "Município"
+  }
+ },
+ "precisao": {
+  "min_n_celula": 5,
+  "min_n_zona": 10,
+  "min_n_detalhe": 30,
+  "cv_boa": 15,
+  "cv_cautela": 30,
+  "deff": 1.0
+ },
+ "maior_fluxo": {
+  "zona": 339464.8038999999,
+  "amc146": 2431809.820000003,
+  "amc75": 2815609.0740362597,
+  "sub": 2207195.8970542415,
+  "muni": 23934151.311455637
+ },
+ "fontes": [
+  "Pesquisa Origem e Destino — Metrô-SP (1977, 1987, 1997, 2007, 2017, 2023)",
+  "IBGE — Censo Demográfico 2022 (setores, CNEFE)",
+  "GeoSampa — Prefeitura de São Paulo"
+ ],
+ "citacao": "Sobreira, D. P. Atlas da Mobilidade na RMSP (1977–2023)."
+}

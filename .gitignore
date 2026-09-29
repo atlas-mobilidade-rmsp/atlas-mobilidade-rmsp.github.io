@@ -77,3 +77,4 @@ web/public/duckdb/
 .venv/
 __pycache__/
 .pytest_cache/
+data/processed/geo/_tmp/

@@ -9,11 +9,12 @@ T=data/processed/geo/_tmp
 O=data/processed/geo
 for f in $T/*.geojson; do
   n=$(basename "$f" .geojson)
-  case "$n" in zonas_*) pct=12% ;; *) pct=20% ;; esac
+  case "$n" in zonas_*) pct=12% ;; contexto_*) pct=50% ;; *) pct=20% ;; esac
+  case "$n" in contexto_*) IDF="" ;; *) IDF="id-field=codigo" ;; esac
   $MS -i "$f" -clean -o "$T/${n}_c.json" format=geojson 2>/dev/null
   $MS -i "$T/${n}_c.json" -simplify "$pct" keep-shapes -o "$T/${n}_s.json" format=geojson 2>/dev/null
   ${PYTHON:-python3} -m pipeline.repara_geo "$T/${n}_s.json"
-  $MS -i "$T/${n}_s.json" -o "$O/$n.topojson" format=topojson id-field=codigo
-  $MS -i "$T/${n}_s.json" -proj from=EPSG:31983 EPSG:4326 -o "$O/${n}_wgs.topojson" format=topojson id-field=codigo
+  $MS -i "$T/${n}_s.json" -o "$O/$n.topojson" format=topojson $IDF
+  $MS -i "$T/${n}_s.json" -proj from=EPSG:31983 EPSG:4326 -o "$O/${n}_wgs.topojson" format=topojson $IDF
 done
 du -sh $O

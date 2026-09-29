@@ -71,3 +71,14 @@ def test_unidades_ref():
     assert z.muni_ibge.notna().all() and z.area_km2.gt(0).all()
     assert z[z.edicao >= 1987].amc_8723.notna().all()
     assert u[u.nivel == "muni"].muni_ibge.nunique() == 39
+
+
+def test_sub_e_trilhos():
+    c = pd.read_parquet(GEO / "centroides.parquet")
+    assert (c.nivel == "sub").sum() == 70
+    s = decodifica("sub")
+    assert len(s) == 70 and s.codigo.str.startswith("SP-").sum() == 32
+    zs = pd.read_parquet(GEO / "zona_para_sub.parquet")
+    assert set(zs.ano) == {1997, 2007, 2017, 2023}
+    assert zs.groupby("ano").encaixe.mean().min() > 0.98      # 1977/1987 e AMC-146 não encaixam (DECISOES.md)
+    assert len(decodifica("contexto_trilhos")) >= 6 and len(decodifica("contexto_estacoes")) > 100

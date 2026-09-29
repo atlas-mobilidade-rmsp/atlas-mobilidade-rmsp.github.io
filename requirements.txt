@@ -1,0 +1,9 @@
+duckdb
+numpy
+pandas
+pyarrow
+scipy
+geopandas
+shapely
+pyogrio
+pytest

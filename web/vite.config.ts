@@ -18,7 +18,7 @@ function siteUrlPlugin(): Plugin {
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), siteUrlPlugin()],
-  base: '/',
+  base: ./',
   build: {
     sourcemap: false,
   },

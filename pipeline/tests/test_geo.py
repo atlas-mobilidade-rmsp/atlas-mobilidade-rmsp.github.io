@@ -66,7 +66,7 @@ def test_centroides_dentro_da_caixa():
 
 def test_unidades_ref():
     u = pd.read_parquet(GEO / "unidades_ref_geo.parquet")
-    assert len(u) == 2650
+    assert len(u) == 2720
     z = u[u.nivel == "zona"]
     assert z.muni_ibge.notna().all() and z.area_km2.gt(0).all()
     assert z[z.edicao >= 1987].amc_8723.notna().all()

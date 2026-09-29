@@ -1,0 +1,55 @@
+id: 18
+slug: envelhecimento
+titulo: Envelhecimento
+pergunta: Como o envelhecimento aparece na mobilidade?
+tema: emergente
+status: respondida
+literatura: []
+indicadores:
+- ind_mob_idade
+- imob_idade
+- censo pct_60m
+vista:
+  modo: pesquisas
+achado:
+  texto: A proporção de idosos (60+) na região passou de {c70}% em 1970 para {c22}% em 2022 (Censo). Em 2023, os
+    idosos fazem {i60} viagens por habitante ao dia, contra {i15} de quem tem 15–59 anos, e {imob} deles não se
+    deslocam no dia.
+  valores:
+    c70:
+      fonte: censo
+      ano_censo: 1970
+      campo: pct_60m
+      fmt: dec1
+    c22:
+      fonte: censo
+      ano_censo: 2022
+      campo: pct_60m
+      fmt: dec1
+    i60:
+      fonte: sistema
+      medida: ind_mob_idade
+      categoria: 60+
+      ed: 2023
+      univ: edicao
+      fmt: dec2
+    i15:
+      fonte: sistema
+      medida: ind_mob_idade
+      categoria: 15-59
+      ed: 2023
+      univ: edicao
+      fmt: dec2
+    imob:
+      fonte: sistema
+      medida: imob_idade
+      categoria: 60+
+      ed: 2023
+      univ: edicao
+      fmt: pct0
+comparabilidade:
+- 'Censo Demográfico 1970–2022 interpolado por área (camada censitária do laboratório): 1970/1980 só em resolução
+  municipal.'
+dados:
+- OD Metrô-SP 1977–2023 (série harmonizada)
+- Censo Demográfico 1970–2022 interpolado por área (camada censitária do laboratório)

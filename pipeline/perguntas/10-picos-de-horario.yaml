@@ -1,0 +1,43 @@
+id: 10
+slug: picos-de-horario
+titulo: Horários de pico
+pergunta: O pico da manhã está se intensificando?
+tema: recorrente
+status: respondida
+literatura: []
+indicadores:
+- pico_manha
+- pico_tarde
+vista:
+  modo: pesquisas
+achado:
+  texto: 'A parcela das viagens que começam entre 6h e 8h59 passou de {m77} em 1977 para {m23} em 2023, enquanto
+    a do pico da tarde (16h–19h59) ficou em torno de {t23}: o pico da manhã ficou mais concentrado.'
+  valores:
+    m77:
+      fonte: sistema
+      medida: pico_manha
+      categoria: todos
+      ed: 1977
+      univ: edicao
+      fmt: pct0
+    m23:
+      fonte: sistema
+      medida: pico_manha
+      categoria: todos
+      ed: 2023
+      univ: edicao
+      fmt: pct0
+    t23:
+      fonte: sistema
+      medida: pico_tarde
+      categoria: todos
+      ed: 2023
+      univ: edicao
+      fmt: pct0
+comparabilidade:
+- 1977 cobre só a área central pesquisada (~95% da população); use o universo 'área comparável de 1977' para séries
+  estritas.
+- Hora de saída informada pelo entrevistado.
+dados:
+- OD Metrô-SP 1977–2023 (série harmonizada)

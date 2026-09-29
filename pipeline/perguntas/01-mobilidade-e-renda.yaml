@@ -1,0 +1,84 @@
+id: 1
+slug: mobilidade-e-renda
+titulo: Quem se desloca mais? Mobilidade e renda
+pergunta: Quanto a mobilidade diária depende da renda, e isso mudou desde 1977?
+tema: recorrente
+status: respondida
+literatura:
+- autores: Vasconcellos, E. A.
+  ano: 2001
+  titulo: 'Transporte urbano, espaço e equidade: análise das políticas públicas'
+  onde: Annablume
+- autores: Pereira, R. H. M.; Schwanen, T.
+  ano: 2013
+  titulo: 'Tempo de deslocamento casa-trabalho no Brasil (1992-2009): diferenças entre regiões metropolitanas, níveis
+    de renda e sexo'
+  onde: IPEA, Texto para Discussão 1813
+indicadores:
+- ind_mob por quintil
+vista:
+  modo: pesquisas
+achado:
+  texto: 'Em 1977 o quintil mais rico fazia {q5_77} viagens por habitante ao dia, contra {q1_77} do mais pobre (razão
+    de {r77}). Em 2023 são {q5_23} e {q1_23} (razão de {r23}): a distância entre os extremos encolheu porque o topo
+    perdeu cerca de {perda_q5} da mobilidade, e o quintil mais pobre ganhou {ganho_q1}.'
+  valores:
+    q5_77:
+      fonte: sistema
+      medida: ind_mob
+      categoria: q5
+      ed: 1977
+      univ: edicao
+      fmt: dec2
+    q1_77:
+      fonte: sistema
+      medida: ind_mob
+      categoria: q1
+      ed: 1977
+      univ: edicao
+      fmt: dec2
+    r77:
+      fonte: expr
+      op: ratio
+      a: q5_77
+      b: q1_77
+      fmt: dec2
+    q5_23:
+      fonte: sistema
+      medida: ind_mob
+      categoria: q5
+      ed: 2023
+      univ: edicao
+      fmt: dec2
+    q1_23:
+      fonte: sistema
+      medida: ind_mob
+      categoria: q1
+      ed: 2023
+      univ: edicao
+      fmt: dec2
+    r23:
+      fonte: expr
+      op: ratio
+      a: q5_23
+      b: q1_23
+      fmt: dec2
+    perda_q5:
+      fonte: expr
+      op: pct_change
+      a: q5_23
+      b: q5_77
+      fmt: abs_pct0
+    ganho_q1:
+      fonte: expr
+      op: pct_change
+      a: q1_23
+      b: q1_77
+      fmt: pct0
+comparabilidade:
+- 'Renda: renda familiar per capita deflacionada (INPC); quintis por edição. 1977 tem 6,8% sem declaração (grupo
+  ''nd'').'
+- 1977 cobre só a área central pesquisada (~95% da população); use o universo 'área comparável de 1977' para séries
+  estritas.
+dados:
+- OD Metrô-SP 1977–2023 (série harmonizada)

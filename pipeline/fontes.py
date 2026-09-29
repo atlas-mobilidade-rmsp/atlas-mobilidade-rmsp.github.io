@@ -8,6 +8,7 @@ METROSP_ROOT = Path(os.environ.get(
 SERIE_DB = METROSP_ROOT / "data/serie_historica/od_serie_1977_2023.duckdb"
 ZONAS_GPKG = METROSP_ROOT / "data/processed/zonas_od.gpkg"
 ZONA_PARA_AMC = METROSP_ROOT / "data/processed/zona_para_amc.csv"
+RAW_PARQUET = METROSP_ROOT / "data/raw_parquet"          # só leitura de atributos de trabalho (trab1_re, híbrido)
 CENSO_DB = METROSP_ROOT / "data/censo/censo_setores_rmsp.duckdb"
 REPO_ROOT = Path(__file__).resolve().parents[1]
 PROCESSED = REPO_ROOT / "data/processed"

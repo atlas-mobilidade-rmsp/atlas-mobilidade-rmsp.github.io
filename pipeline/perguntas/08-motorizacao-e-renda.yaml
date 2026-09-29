@@ -1,0 +1,48 @@
+id: 8
+slug: motorizacao-e-renda
+titulo: Motorização
+pergunta: Quanto a motorização cresceu e como isso se relaciona à mobilidade?
+tema: recorrente
+status: respondida
+literatura:
+- autores: Vasconcellos, E. A.
+  ano: 2001
+  titulo: 'Transporte urbano, espaço e equidade: análise das políticas públicas'
+  onde: Annablume
+indicadores:
+- autos_100hab
+vista:
+  modo: mapa
+  ed: 2023
+  nivel: amc146
+  metrica: autos_100hab
+achado:
+  texto: A frota das famílias passou de {a77} para {a23} automóveis por 100 habitantes entre 1977 e 2023, e o transporte
+    individual motorizado é o modo de {ind_q5} das viagens do quintil mais rico.
+  valores:
+    a77:
+      fonte: sistema
+      medida: autos_100hab
+      categoria: todos
+      ed: 1977
+      univ: edicao
+      fmt: dec1
+    a23:
+      fonte: sistema
+      medida: autos_100hab
+      categoria: todos
+      ed: 2023
+      univ: edicao
+      fmt: dec1
+    ind_q5:
+      fonte: sistema
+      medida: individual_q
+      categoria: q5
+      ed: 2023
+      univ: edicao
+      fmt: pct0
+comparabilidade:
+- 1977 cobre só a área central pesquisada (~95% da população); use o universo 'área comparável de 1977' para séries
+  estritas.
+dados:
+- OD Metrô-SP 1977–2023 (série harmonizada)

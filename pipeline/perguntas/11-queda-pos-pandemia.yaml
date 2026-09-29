@@ -1,0 +1,54 @@
+id: 11
+slug: queda-pos-pandemia
+titulo: A queda de 2023
+pergunta: Quanto a mobilidade caiu depois da pandemia?
+tema: emergente
+status: respondida
+literatura: []
+indicadores:
+- viagens
+- ind_mob
+vista:
+  modo: pesquisas
+achado:
+  texto: As viagens diárias da região foram de {v17} milhões em 2017 para {v23} milhões em 2023 (variação de {var})
+    e o índice de mobilidade caiu de {i17} para {i23} viagens por habitante.
+  valores:
+    v17:
+      fonte: sistema
+      medida: viagens
+      categoria: todos
+      ed: 2017
+      univ: edicao
+      fmt: mi1
+    v23:
+      fonte: sistema
+      medida: viagens
+      categoria: todos
+      ed: 2023
+      univ: edicao
+      fmt: mi1
+    var:
+      fonte: expr
+      op: pct_change
+      a: v23
+      b: v17
+      fmt: pct0
+    i17:
+      fonte: sistema
+      medida: ind_mob
+      categoria: todos
+      ed: 2017
+      univ: edicao
+      fmt: dec2
+    i23:
+      fonte: sistema
+      medida: ind_mob
+      categoria: todos
+      ed: 2023
+      univ: edicao
+      fmt: dec2
+comparabilidade:
+- O campo de 2023 foi feito no pós-pandemia; a queda é real nos dados, não efeito da harmonização.
+dados:
+- OD Metrô-SP 1977–2023 (série harmonizada)

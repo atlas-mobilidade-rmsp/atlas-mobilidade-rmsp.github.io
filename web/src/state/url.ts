@@ -13,7 +13,7 @@ export function lerUrl(p: URLSearchParams): Partial<Estado> {
   const top = Number(p.get("top")); if (top >= 1 && top <= 500) e.top = Math.floor(top);
   const fmin = Number(p.get("fmin")); if (p.get("fmin") && fmin >= 0 && fmin <= 1) e.fmin = fmin;
   if (p.get("baixa") === "1") e.baixa = true;
-  const md = p.get("modo"); if (md === "serie" || md === "pesquisas") e.modo = md;
+  const md = p.get("modo"); if (md === "serie" || md === "pesquisas" || md === "perguntas") e.modo = md;
   if (p.get("us")?.includes(":")) e.us = p.get("us");
   if (p.get("ms")) e.ms = p.get("ms")!;
   if (p.get("univ") === "area1977") e.univ = "area1977";

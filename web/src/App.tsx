@@ -12,6 +12,7 @@ import { nivelDaSerie } from "./lib/serie";
 import { num, num1 } from "./lib/format";
 import { NIVEIS } from "./lib/tipos";
 import { ModoPesquisas } from "./components/ModoPesquisas";
+import { Perguntas } from "./components/Perguntas";
 
 export default function App() {
   const s = useStore();
@@ -73,6 +74,7 @@ export default function App() {
       <h1>Atlas da Mobilidade na RMSP</h1>
       <p>Pesquisa Origem e Destino do Metrô-SP · 1977–2023</p>
       <nav className="modos" aria-label="Modo">
+        <button className={s.modo === "perguntas" ? "ativo" : ""} onClick={() => s.set({ modo: "perguntas" })}>Perguntas</button>
         <button className={s.modo === "mapa" ? "ativo" : ""} onClick={() => s.set({ modo: "mapa" })}>Mapa</button>
         <button className={s.modo === "serie" ? "ativo" : ""} onClick={() => s.set({ modo: "serie" })}>Um par ao longo das pesquisas</button>
         <button className={s.modo === "pesquisas" ? "ativo" : ""} onClick={() => s.set({ modo: "pesquisas" })}>Ao longo das pesquisas</button>
@@ -82,6 +84,7 @@ export default function App() {
 
   if (s.modo === "serie") return <ModoSerie cabecalho={cabecalho} />;
   if (s.modo === "pesquisas") return <ModoPesquisas cabecalho={cabecalho} />;
+  if (s.modo === "perguntas") return <Perguntas cabecalho={cabecalho} />;
 
   return (
     <div className="app">

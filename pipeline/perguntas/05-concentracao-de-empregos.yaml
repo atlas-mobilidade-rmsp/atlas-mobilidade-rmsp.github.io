@@ -1,0 +1,42 @@
+id: 5
+slug: concentracao-de-empregos
+titulo: Onde estão os empregos?
+pergunta: Quão concentrados estão os empregos na metrópole?
+tema: recorrente
+status: respondida
+literatura:
+- autores: Hansen, W. G.
+  ano: 1959
+  titulo: How accessibility shapes land use
+  onde: Journal of the American Institute of Planners 25(2), 73-76
+indicadores:
+- empregos_od
+- jobs_housing
+vista:
+  modo: mapa
+  ed: 2023
+  nivel: amc146
+  metrica: jobs_housing
+achado:
+  texto: As dez AMC com mais empregos concentravam {top87} dos empregos com local fixo em 1987 e {top23} em 2023
+    — a concentração central praticamente não se dispersou em 36 anos.
+  valores:
+    top87:
+      fonte: topshare
+      nivel: amc146
+      ed: 1987
+      campo: empregos_od
+      n: 10
+      fmt: pct0
+    top23:
+      fonte: topshare
+      nivel: amc146
+      ed: 2023
+      campo: empregos_od
+      n: 10
+      fmt: pct0
+comparabilidade:
+- Empregos = ocupados com local fixo de trabalho na RMSP, pela zona do 1º trabalho (não inclui trabalho em casa/sem
+  local fixo).
+dados:
+- OD Metrô-SP 1977–2023 (série harmonizada)

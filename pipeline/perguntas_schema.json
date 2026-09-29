@@ -1,0 +1,26 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "type": "object",
+  "required": ["id", "slug", "titulo", "pergunta", "tema", "status", "indicadores", "vista", "achado"],
+  "additionalProperties": false,
+  "properties": {
+    "id": {"type": "integer"},
+    "slug": {"type": "string", "pattern": "^[a-z0-9-]+$"},
+    "titulo": {"type": "string"},
+    "pergunta": {"type": "string"},
+    "tema": {"enum": ["recorrente", "emergente"]},
+    "status": {"enum": ["respondida", "parcial", "aguarda_dados"]},
+    "literatura": {"type": "array", "items": {"type": "object", "required": ["autores", "ano", "titulo"], "properties": {"autores": {"type": "string"}, "ano": {"type": "integer"}, "titulo": {"type": "string"}, "onde": {"type": "string"}, "doi": {"type": "string"}}}},
+    "indicadores": {"type": "array", "items": {"type": "string"}},
+    "vista": {"type": "object", "additionalProperties": false, "properties": {
+      "modo": {"enum": ["mapa", "serie", "pesquisas"]}, "ed": {"type": "integer"}, "nivel": {"enum": ["zona", "amc146", "amc75", "sub", "muni"]},
+      "metrica": {"type": "string"}, "tipo": {"enum": ["todas", "trabalho", "estudo", "casa_trab"]}, "unidade": {"type": "string"},
+      "origem": {"type": "string"}, "destino": {"type": "string"}, "top": {"type": "integer"}, "univ": {"enum": ["edicao", "area1977"]}, "ms": {"type": "string"}, "us": {"type": "string"}}},
+    "achado": {"type": "object", "required": ["texto", "valores"], "additionalProperties": false, "properties": {
+      "texto": {"type": "string"},
+      "valores": {"type": "object", "additionalProperties": {"type": "object"}}}},
+    "comparabilidade": {"type": "array", "items": {"type": "string"}},
+    "dados": {"type": "array", "items": {"type": "string"}},
+    "pendencias": {"type": "array", "items": {"type": "string"}}
+  }
+}

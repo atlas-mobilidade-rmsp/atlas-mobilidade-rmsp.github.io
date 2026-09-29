@@ -1,0 +1,56 @@
+id: 7
+slug: exclusao-e-imobilidade
+titulo: Imobilidade e exclusão
+pergunta: Quem não se desloca? A imobilidade diária é mais frequente entre os mais pobres?
+tema: recorrente
+status: respondida
+literatura:
+- autores: Lucas, K.
+  ano: 2012
+  titulo: 'Transport and social exclusion: Where are we now?'
+  onde: Transport Policy 20, 105-113
+  doi: 10.1016/j.tranpol.2012.01.013
+indicadores:
+- imob_15m por quintil
+vista:
+  modo: pesquisas
+achado:
+  texto: Em 2023, {q1} das pessoas de 15 anos ou mais do quintil mais pobre não fizeram nenhuma viagem no dia, contra
+    {q5} no quintil mais rico. Em 1977 os números eram {q1_77} e {q5_77}.
+  valores:
+    q1:
+      fonte: sistema
+      medida: imob_15m
+      categoria: q1
+      ed: 2023
+      univ: edicao
+      fmt: pct0
+    q5:
+      fonte: sistema
+      medida: imob_15m
+      categoria: q5
+      ed: 2023
+      univ: edicao
+      fmt: pct0
+    q1_77:
+      fonte: sistema
+      medida: imob_15m
+      categoria: q1
+      ed: 1977
+      univ: edicao
+      fmt: pct0
+    q5_77:
+      fonte: sistema
+      medida: imob_15m
+      categoria: q5
+      ed: 1977
+      univ: edicao
+      fmt: pct0
+comparabilidade:
+- 'Renda: renda familiar per capita deflacionada (INPC); quintis por edição. 1977 tem 6,8% sem declaração (grupo
+  ''nd'').'
+- 1977 cobre só a área central pesquisada (~95% da população); use o universo 'área comparável de 1977' para séries
+  estritas.
+- A OD registra um dia útil; imobilidade de um dia não é imobilidade estrutural.
+dados:
+- OD Metrô-SP 1977–2023 (série harmonizada)

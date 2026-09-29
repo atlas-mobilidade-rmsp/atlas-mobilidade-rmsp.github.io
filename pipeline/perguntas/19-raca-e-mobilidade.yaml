@@ -1,0 +1,85 @@
+id: 19
+slug: raca-e-mobilidade
+titulo: Raça/cor e mobilidade (2023)
+pergunta: Pessoas pretas e pardas se deslocam de modo diferente das brancas?
+tema: emergente
+status: respondida
+literatura: []
+indicadores:
+- ind_mob_raca
+- tempo_trab_raca
+- coletivo_raca
+vista:
+  modo: pesquisas
+achado:
+  texto: Em 2023 pretos e pardos fazem praticamente o mesmo número de viagens por habitante que brancos ({pp} contra
+    {br}), mas usam mais o transporte coletivo ({col_pp} contra {col_br} das viagens) e levam {dif} minutos a mais
+    nas viagens ao trabalho ({t_pp} contra {t_br} min). O quintil médio de renda per capita é {q_pp} contra {q_br}.
+  valores:
+    pp:
+      fonte: sistema
+      medida: ind_mob_raca
+      categoria: preta_parda
+      ed: 2023
+      univ: edicao
+      fmt: dec2
+    br:
+      fonte: sistema
+      medida: ind_mob_raca
+      categoria: branca
+      ed: 2023
+      univ: edicao
+      fmt: dec2
+    col_pp:
+      fonte: sistema
+      medida: coletivo_raca
+      categoria: preta_parda
+      ed: 2023
+      univ: edicao
+      fmt: pct0
+    col_br:
+      fonte: sistema
+      medida: coletivo_raca
+      categoria: branca
+      ed: 2023
+      univ: edicao
+      fmt: pct0
+    t_pp:
+      fonte: sistema
+      medida: tempo_trab_raca
+      categoria: preta_parda
+      ed: 2023
+      univ: edicao
+      fmt: int
+    t_br:
+      fonte: sistema
+      medida: tempo_trab_raca
+      categoria: branca
+      ed: 2023
+      univ: edicao
+      fmt: int
+    dif:
+      fonte: expr
+      op: diff
+      a: t_pp
+      b: t_br
+      fmt: int
+    q_pp:
+      fonte: sistema
+      medida: quintil_medio_raca
+      categoria: preta_parda
+      ed: 2023
+      univ: edicao
+      fmt: dec1
+    q_br:
+      fonte: sistema
+      medida: quintil_medio_raca
+      categoria: branca
+      ed: 2023
+      univ: edicao
+      fmt: dec1
+comparabilidade:
+- Raça/cor só existe em 2023 (autodeclarada); grupos amarela, indígena e sem declaração ficam fora da comparação
+  (<3% da amostra).
+dados:
+- OD Metrô-SP 1977–2023 (série harmonizada)

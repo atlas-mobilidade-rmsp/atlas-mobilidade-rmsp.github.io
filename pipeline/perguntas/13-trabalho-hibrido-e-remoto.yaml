@@ -1,0 +1,54 @@
+id: 13
+slug: trabalho-hibrido-e-remoto
+titulo: Trabalho híbrido, em casa e sem local fixo
+pergunta: Quantos trabalham em casa, de forma híbrida ou sem local fixo?
+tema: emergente
+status: respondida
+literatura: []
+indicadores:
+- trab_domicilio
+- sem_local_fixo
+- trab_hibrido
+vista:
+  modo: mapa
+  ed: 2023
+  nivel: amc146
+  metrica: jobs_housing
+achado:
+  texto: Em 2023, {casa} dos ocupados trabalham no próprio domicílio (eram {casa07} em 2007), {sem} não têm endereço
+    fixo e {hib} declaram frequência presencial de trabalho híbrido.
+  valores:
+    casa:
+      fonte: sistema
+      medida: trab_domicilio
+      categoria: todos
+      ed: 2023
+      univ: edicao
+      fmt: pct0
+    casa07:
+      fonte: sistema
+      medida: trab_domicilio
+      categoria: todos
+      ed: 2007
+      univ: edicao
+      fmt: pct0
+    sem:
+      fonte: sistema
+      medida: sem_local_fixo
+      categoria: todos
+      ed: 2023
+      univ: edicao
+      fmt: pct0
+    hib:
+      fonte: sistema
+      medida: trab_hibrido
+      categoria: todos
+      ed: 2023
+      univ: edicao
+      fmt: pct1
+comparabilidade:
+- Trabalho em casa e sem endereço fixo só é identificável de 2007 em diante; 1977–1997 os incluem como deslocamento
+  intra-zonal (ruptura de tratamento).
+- 'Híbrido: quem declara frequência de trabalho presencial (dias por semana/mês); só 2023.'
+dados:
+- OD Metrô-SP 1977–2023 (série harmonizada)

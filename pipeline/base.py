@@ -7,7 +7,7 @@ Códigos: zona = zona OD do ano; amc146/amc75 = AMC; muni = IBGE (0 -> NULL); su
 import duckdb
 import pandas as pd
 
-from pipeline.fontes import PROCESSED, SERIE_DB
+from pipeline.fontes import PROCESSED, RAW_PARQUET, SERIE_DB
 
 GEO = PROCESSED / "geo"
 NIVEIS = ("zona", "amc146", "amc75", "sub", "muni")
@@ -23,6 +23,27 @@ def _u(expr_zona, expr_a146, expr_a75, expr_muni, sub_alias):
     }
 
 
+def atributos_trabalho() -> pd.DataFrame:
+    """Atributos do 1º trabalho ausentes da série harmonizada, por pessoa (2007+): `trab_re` (1 = trabalha em casa /
+    primeiro trabalho igual à residência; 2 = local fixo fora; 3 = sem endereço fixo) e `hibrido` (2023: há frequência
+    presencial declarada). O id_pess é reconstruído como em scripts/08 do laboratório (flags f_dom/f_fam/f_pess em ordem
+    de arquivo). Só atributo por pessoa; nada individual é impresso ou publicado."""
+    saida = []
+    for ano in (2007, 2017, 2023):
+        extra = ["cd_tipo_hibrido_t1", "raça", "id_transp_pandemia"] if ano == 2023 else []
+        d = pd.read_parquet(RAW_PARQUET / f"od{ano}.parquet", columns=["f_dom", "f_fam", "f_pess", "trab1_re", *extra])
+        num = lambda c: pd.to_numeric(d[c], errors="coerce")
+        dom, fam, pes = num("f_dom").eq(1).cumsum(), num("f_fam").eq(1).cumsum(), num("f_pess").eq(1).cumsum()
+        m = num("f_pess").eq(1)
+        idp = (f"{ano}_" + dom.astype(str) + "_" + fam.astype(str) + "_" + pes.astype(str))[m]
+        t = pd.DataFrame({"ano": ano, "id_pess": idp.values, "trab_re": num("trab1_re")[m].values})
+        t["hibrido"] = (d["cd_tipo_hibrido_t1"][m].astype(str).isin(["1", "2", "3"]).values if ano == 2023 else False)
+        t["raca"] = num("raça")[m].values if ano == 2023 else float("nan")
+        t["mudou_pandemia"] = (d["id_transp_pandemia"][m].astype(str).eq("S").values if ano == 2023 else False)
+        saida.append(t)
+    return pd.concat(saida, ignore_index=True)
+
+
 def conectar() -> duckdb.DuckDBPyConnection:
     con = duckdb.connect()
     con.execute(f"attach '{SERIE_DB}' as od (read_only)")
@@ -31,14 +52,20 @@ def conectar() -> duckdb.DuckDBPyConnection:
     con.register("zsub_df", zs)
     con.execute("create table zsub as select cast(ano as smallint) ano, cast(zona as smallint) zona, sub from zsub_df")
 
+    tw = atributos_trabalho()
+    tw["ano"] = tw["ano"].astype("int16")
+    con.register("tw_df", tw)
+    con.execute("create table trab_attr as select ano, id_pess, cast(trab_re as tinyint) trab_re, hibrido, cast(raca as tinyint) raca, mudou_pandemia from tw_df")
     # renda familiar per capita r2023 -> quintil ponderado por pessoa, por ano
     con.execute("""create table pess as
       select p.ano, p.id_pess, p.id_dom, p.id_fam, p.fe_pess, p.idade, p.sexo, p.grau_ins_4, p.cond_ativ, p.setor_ativ,
              f.renda_fa_r2023 / nullif(f.n_pessoas,0) as rpc,
              d.zona as z_home, d.dom_amc_8723 as a146_home, d.dom_amc_7723 as a75_home, d.muni_ibge as m_home,
              p.zona_trab1 as z_trab, p.trab1_amc_8723 as a146_trab, p.trab1_amc_7723 as a75_trab, p.muni_trab1_ibge as m_trab,
+             ta.trab_re, coalesce(ta.hibrido, false) as hibrido, ta.raca, coalesce(ta.mudou_pandemia, false) as mudou_pandemia,
              p.zona_esc as z_esc, p.esc_amc_8723 as a146_esc, p.esc_amc_7723 as a75_esc, p.muni_esc_ibge as m_esc
-      from od.pessoas p join od.domicilios d using (ano, id_dom) left join od.familias f using (ano, id_dom, id_fam)""")
+      from od.pessoas p join od.domicilios d using (ano, id_dom) left join od.familias f using (ano, id_dom, id_fam)
+      left join trab_attr ta on ta.ano = p.ano and ta.id_pess = p.id_pess""")
     con.execute("""create table pess_q as
         select * exclude (cum, tot), least(5, 1 + cast(floor(5 * (cum - fe_pess / 2) / tot) as int)) as quintil from (
           select *, sum(fe_pess) over (partition by ano order by rpc, id_pess) as cum,

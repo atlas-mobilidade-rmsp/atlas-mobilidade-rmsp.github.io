@@ -1,0 +1,108 @@
+id: 4
+slug: emprego-moradia-e-excesso
+titulo: Emprego–moradia e excesso de deslocamento
+pergunta: As pessoas moram longe demais dos empregos? O deslocamento casa–trabalho é maior que o mínimo possível?
+tema: recorrente
+status: parcial
+literatura:
+- autores: Hamilton, B. W.
+  ano: 1982
+  titulo: Wasteful commuting
+  onde: Journal of Political Economy 90(5), 1035-1053
+- autores: White, M. J.
+  ano: 1988
+  titulo: Urban commuting journeys are not 'wasteful'
+  onde: Journal of Political Economy 96(5), 1097-1110
+- autores: Horner, M. W.
+  ano: 2002
+  titulo: Extensions to the concept of excess commuting
+  onde: Environment and Planning A 34(3), 543-566
+- autores: Wilson, A. G.
+  ano: 1967
+  titulo: A statistical theory of spatial distribution models
+  onde: Transportation Research 1(3), 253-269
+indicadores:
+- excesso de deslocamento
+- MTL
+- autocontenção
+vista:
+  modo: pesquisas
+achado:
+  texto: 'Entre os ocupados com local fixo de trabalho, o deslocamento casa–trabalho médio (entre centroides de
+    AMC) é de {mtl23} km em 2023 e seria de {tmin23} km se moradia e emprego fossem realocados para minimizá-lo:
+    um excesso de {exc23}, pouco acima do de 2007 ({exc07}). A hipótese de distância intra-unidade muda esse número
+    entre {exc_lo} e {exc_hi}. Na série comparável com 1977–1997 (que inclui trabalho em casa) o excesso é de {exc77}
+    em 1977 e {exc23i} em 2023: sem tendência clara.'
+  valores:
+    mtl23:
+      fonte: params
+      ed: 2023
+      nivel: amc75
+      imped: dist_km
+      caminho: mtl_obs
+      fmt: dec1
+    tmin23:
+      fonte: params
+      ed: 2023
+      nivel: amc75
+      imped: dist_km
+      caminho: t_min
+      fmt: dec1
+    exc23:
+      fonte: sistema
+      medida: excesso_dist_km
+      categoria: amc75
+      ed: 2023
+      univ: area1977
+      fmt: pct0
+    exc07:
+      fonte: sistema
+      medida: excesso_dist_km
+      categoria: amc75
+      ed: 2007
+      univ: area1977
+      fmt: pct0
+    exc_lo:
+      fonte: params
+      ed: 2023
+      nivel: amc75
+      imped: dist_km
+      caminho:
+      - sensibilidade_intra
+      - '1.0'
+      - excesso
+      fmt: pct0
+    exc_hi:
+      fonte: params
+      ed: 2023
+      nivel: amc75
+      imped: dist_km
+      caminho:
+      - sensibilidade_intra
+      - '0.5'
+      - excesso
+      fmt: pct0
+    exc77:
+      fonte: sistema
+      medida: excesso_dist_km_incl
+      categoria: amc75
+      ed: 1977
+      univ: area1977
+      fmt: pct0
+    exc23i:
+      fonte: sistema
+      medida: excesso_dist_km_incl
+      categoria: amc75
+      ed: 2023
+      univ: area1977
+      fmt: pct0
+comparabilidade:
+- 'Excesso depende da agregação (MAUP): publicamos só AMC, com faixa de sensibilidade à distância intra-unidade
+  (fator 0,5–1,0).'
+- Trabalho em casa e sem endereço fixo só é identificável de 2007 em diante; 1977–1997 os incluem como deslocamento
+  intra-zonal (ruptura de tratamento).
+- Município e subprefeitura são dominados pela capital como unidade única e não têm excesso publicado.
+dados:
+- OD Metrô-SP 1977–2023 (série harmonizada)
+pendencias:
+- Recalcular com tempo observado por modo (regressão dist × modo).

@@ -90,3 +90,15 @@ def test_serie_sistema_e_unidades():
     assert np.allclose(m, 1, atol=1e-6)
     u = pd.read_parquet(PROCESSED / "serie" / "unidades_serie.parquet")
     assert set(u.nivel) == {"amc75", "amc146", "muni"} and u.edicao.nunique() == 6
+
+
+def test_perguntas_json():
+    import jsonschema
+    from pipeline.build_perguntas import SCHEMA
+    ps = json.loads((PROCESSED / "perguntas.json").read_text())
+    assert len(ps) >= 20 and len({p["id"] for p in ps}) == len(ps)
+    for p in ps:
+        jsonschema.validate({k: v for k, v in p.items()}, {**SCHEMA, "properties": {**SCHEMA["properties"], "achado": {"type": "object"}}})
+        assert "{" not in p["achado"]["texto"], p["slug"]            # nenhum placeholder sem resolver
+        if p["status"] != "aguarda_dados":
+            assert p["achado"]["valores"] and all(v["valor"] == v["valor"] for v in p["achado"]["valores"].values())

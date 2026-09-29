@@ -4,7 +4,7 @@ import type { Nivel, TipoFluxo } from "../lib/tipos";
 export interface Estado {
   ed: number; nivel: Nivel; metrica: string; tipo: TipoFluxo;
   unidade: string | null; par: { o: string; d: string } | null;
-  top: number; fmin: number; baixa: boolean; modo: "mapa" | "serie" | "pesquisas"; us: string | null; ms: string; univ: "edicao" | "area1977"; trilhos: boolean;
+  top: number; fmin: number; baixa: boolean; modo: "mapa" | "serie" | "pesquisas" | "perguntas"; us: string | null; ms: string; univ: "edicao" | "area1977"; trilhos: boolean;
 }
 export interface Acoes {
   set: (p: Partial<Estado>) => void;

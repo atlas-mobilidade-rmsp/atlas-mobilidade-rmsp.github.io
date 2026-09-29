@@ -1,0 +1,66 @@
+id: 9
+slug: genero-e-mobilidade
+titulo: Gênero e mobilidade
+pergunta: Homens e mulheres se deslocam de modo diferente? A diferença mudou?
+tema: recorrente
+status: respondida
+literatura:
+- autores: Sánchez de Madariaga, I.
+  ano: 2013
+  titulo: 'The mobility of care: a new concept in urban transportation'
+  onde: in Fair Shared Cities, Ashgate
+indicadores:
+- ind_mob_sexo
+- trabalho_sexo
+vista:
+  modo: pesquisas
+achado:
+  texto: Em 1977 as mulheres faziam {f77} viagens por habitante contra {m77} dos homens (razão de {r77}); em 2023
+    são {f23} e {m23} (razão de {r23}). A diferença encolheu sobretudo porque a mobilidade masculina caiu.
+  valores:
+    f77:
+      fonte: sistema
+      medida: ind_mob_sexo
+      categoria: feminino
+      ed: 1977
+      univ: edicao
+      fmt: dec2
+    m77:
+      fonte: sistema
+      medida: ind_mob_sexo
+      categoria: masculino
+      ed: 1977
+      univ: edicao
+      fmt: dec2
+    r77:
+      fonte: expr
+      op: ratio
+      a: f77
+      b: m77
+      fmt: dec2
+    f23:
+      fonte: sistema
+      medida: ind_mob_sexo
+      categoria: feminino
+      ed: 2023
+      univ: edicao
+      fmt: dec2
+    m23:
+      fonte: sistema
+      medida: ind_mob_sexo
+      categoria: masculino
+      ed: 2023
+      univ: edicao
+      fmt: dec2
+    r23:
+      fonte: expr
+      op: ratio
+      a: f23
+      b: m23
+      fmt: dec2
+comparabilidade:
+- 1977 cobre só a área central pesquisada (~95% da população); use o universo 'área comparável de 1977' para séries
+  estritas.
+- População inteira (inclui crianças).
+dados:
+- OD Metrô-SP 1977–2023 (série harmonizada)

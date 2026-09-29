@@ -1,0 +1,27 @@
+id: 20
+slug: acessibilidade-transporte-publico
+titulo: Acessibilidade por transporte público
+pergunta: Quantos empregos se alcançam em 30/45/60 min de transporte público, por área?
+tema: recorrente
+status: aguarda_dados
+literatura:
+- autores: Boisjoly, G.; Moreno-Monroy, A. I.; El-Geneidy, A.
+  ano: 2017
+  titulo: 'Informality and accessibility to jobs by public transit: Evidence from the São Paulo Metropolitan Region'
+  onde: Journal of Transport Geography 64, 89-96
+  doi: 10.1016/j.jtrangeo.2017.08.011
+indicadores:
+- cma30
+- cma45
+- cma60
+vista:
+  modo: mapa
+achado:
+  texto: 'Aguardando a camada de acessibilidade (AOP/IPEA e GTFS): sem ela, o atlas mede acesso só por distância
+    (pergunta 6).'
+  valores: {}
+comparabilidade:
+- Requer GTFS de SPTrans/EMTU/Metrô/CPTM ou AOP-IPEA (2017–2019).
+dados: []
+pendencias:
+- 'F6: AOP-IPEA, GTFS.'

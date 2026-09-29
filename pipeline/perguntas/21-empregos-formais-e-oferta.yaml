@@ -1,0 +1,21 @@
+id: 21
+slug: empregos-formais-e-oferta
+titulo: Empregos formais e oferta de trabalho
+pergunta: Onde estão os empregos formais (RAIS) frente aos declarados na OD?
+tema: recorrente
+status: aguarda_dados
+literatura: []
+indicadores:
+- empregos_rais
+- empregos_od
+vista:
+  modo: mapa
+achado:
+  texto: Aguardando a RAIS pública por município/distrito para comparar o emprego formal com os locais de trabalho
+    declarados na OD.
+  valores: {}
+comparabilidade:
+- RAIS pública cobre só o emprego formal; distrito só na capital.
+dados: []
+pendencias:
+- 'F6: RAIS pública (PDET).'

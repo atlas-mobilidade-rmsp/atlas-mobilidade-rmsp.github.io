@@ -1,0 +1,49 @@
+id: 12
+slug: aplicativos-e-motos
+titulo: Aplicativos e motos
+pergunta: Táxi/aplicativo e motocicleta ganharam espaço?
+tema: emergente
+status: respondida
+literatura: []
+indicadores:
+- pct_taxi_app
+- pct_moto
+vista:
+  modo: pesquisas
+achado:
+  texto: Táxi e aplicativo passaram de {app17} das viagens em 2017 para {app23} em 2023; a moto, de {m17} para {m23}.
+    Ainda são parcelas pequenas, mas a de táxi/aplicativo quase triplicou.
+  valores:
+    app17:
+      fonte: sistema
+      medida: pct_taxi_app
+      categoria: todos
+      ed: 2017
+      univ: edicao
+      fmt: pct1
+    app23:
+      fonte: sistema
+      medida: pct_taxi_app
+      categoria: todos
+      ed: 2023
+      univ: edicao
+      fmt: pct1
+    m17:
+      fonte: sistema
+      medida: pct_moto
+      categoria: todos
+      ed: 2017
+      univ: edicao
+      fmt: pct1
+    m23:
+      fonte: sistema
+      medida: pct_moto
+      categoria: todos
+      ed: 2023
+      univ: edicao
+      fmt: pct1
+comparabilidade:
+- Táxi e aplicativo compartilham o mesmo código de modo (não distinguíveis); a moto inclui mototáxi.
+- Em 1977 'táxi' existia como modo próprio e não é comparável a aplicativo.
+dados:
+- OD Metrô-SP 1977–2023 (série harmonizada)

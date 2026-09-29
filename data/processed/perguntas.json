@@ -1,0 +1,1680 @@
+[
+ {
+  "id": 1,
+  "slug": "mobilidade-e-renda",
+  "titulo": "Quem se desloca mais? Mobilidade e renda",
+  "pergunta": "Quanto a mobilidade diária depende da renda, e isso mudou desde 1977?",
+  "tema": "recorrente",
+  "status": "respondida",
+  "literatura": [
+   {
+    "autores": "Vasconcellos, E. A.",
+    "ano": 2001,
+    "titulo": "Transporte urbano, espaço e equidade: análise das políticas públicas",
+    "onde": "Annablume"
+   },
+   {
+    "autores": "Pereira, R. H. M.; Schwanen, T.",
+    "ano": 2013,
+    "titulo": "Tempo de deslocamento casa-trabalho no Brasil (1992-2009): diferenças entre regiões metropolitanas, níveis de renda e sexo",
+    "onde": "IPEA, Texto para Discussão 1813"
+   }
+  ],
+  "indicadores": [
+   "ind_mob por quintil"
+  ],
+  "vista": {
+   "modo": "pesquisas"
+  },
+  "achado": {
+   "texto": "Em 1977 o quintil mais rico fazia 2,69 viagens por habitante ao dia, contra 1,48 do mais pobre (razão de 1,82). Em 2023 são 1,83 e 1,61 (razão de 1,13): a distância entre os extremos encolheu porque o topo perdeu cerca de 32% da mobilidade, e o quintil mais pobre ganhou 9%.",
+   "texto_template": "Em 1977 o quintil mais rico fazia {q5_77} viagens por habitante ao dia, contra {q1_77} do mais pobre (razão de {r77}). Em 2023 são {q5_23} e {q1_23} (razão de {r23}): a distância entre os extremos encolheu porque o topo perdeu cerca de {perda_q5} da mobilidade, e o quintil mais pobre ganhou {ganho_q1}.",
+   "valores": {
+    "q5_77": {
+     "fonte": "sistema",
+     "medida": "ind_mob",
+     "categoria": "q5",
+     "ed": 1977,
+     "univ": "edicao",
+     "fmt": "dec2",
+     "valor": 2.687531093085125
+    },
+    "q1_77": {
+     "fonte": "sistema",
+     "medida": "ind_mob",
+     "categoria": "q1",
+     "ed": 1977,
+     "univ": "edicao",
+     "fmt": "dec2",
+     "valor": 1.4760908988273973
+    },
+    "r77": {
+     "fonte": "expr",
+     "op": "ratio",
+     "a": "q5_77",
+     "b": "q1_77",
+     "fmt": "dec2",
+     "valor": 1.8207083962241706
+    },
+    "q5_23": {
+     "fonte": "sistema",
+     "medida": "ind_mob",
+     "categoria": "q5",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "dec2",
+     "valor": 1.8273242747962666
+    },
+    "q1_23": {
+     "fonte": "sistema",
+     "medida": "ind_mob",
+     "categoria": "q1",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "dec2",
+     "valor": 1.61241487293475
+    },
+    "r23": {
+     "fonte": "expr",
+     "op": "ratio",
+     "a": "q5_23",
+     "b": "q1_23",
+     "fmt": "dec2",
+     "valor": 1.133284184777061
+    },
+    "perda_q5": {
+     "fonte": "expr",
+     "op": "pct_change",
+     "a": "q5_23",
+     "b": "q5_77",
+     "fmt": "abs_pct0",
+     "valor": -0.3200732525484542
+    },
+    "ganho_q1": {
+     "fonte": "expr",
+     "op": "pct_change",
+     "a": "q1_23",
+     "b": "q1_77",
+     "fmt": "pct0",
+     "valor": 0.09235472843552395
+    }
+   }
+  },
+  "comparabilidade": [
+   "Renda: renda familiar per capita deflacionada (INPC); quintis por edição. 1977 tem 6,8% sem declaração (grupo 'nd').",
+   "1977 cobre só a área central pesquisada (~95% da população); use o universo 'área comparável de 1977' para séries estritas."
+  ],
+  "dados": [
+   "OD Metrô-SP 1977–2023 (série harmonizada)"
+  ]
+ },
+ {
+  "id": 2,
+  "slug": "tempo-de-deslocamento",
+  "titulo": "Quanto tempo leva o caminho ao trabalho?",
+  "pergunta": "O tempo de deslocamento casa–trabalho depende do modo e da renda? Mudou ao longo da série?",
+  "tema": "recorrente",
+  "status": "respondida",
+  "literatura": [
+   {
+    "autores": "Pereira, R. H. M.; Schwanen, T.",
+    "ano": 2013,
+    "titulo": "Tempo de deslocamento casa-trabalho no Brasil (1992-2009): diferenças entre regiões metropolitanas, níveis de renda e sexo",
+    "onde": "IPEA, Texto para Discussão 1813"
+   },
+   {
+    "autores": "Vasconcellos, E. A.",
+    "ano": 2001,
+    "titulo": "Transporte urbano, espaço e equidade: análise das políticas públicas",
+    "onde": "Annablume"
+   }
+  ],
+  "indicadores": [
+   "tempo_trab por modo",
+   "tempo_diario_viajante por quintil"
+  ],
+  "vista": {
+   "modo": "pesquisas"
+  },
+  "achado": {
+   "texto": "Em 2023 a viagem casa→trabalho por transporte coletivo dura em média 71 minutos, contra 32 minutos no transporte individual motorizado (2,2 vezes mais). Em 1977 eram 56 e 26 minutos. Entre quem viaja, o quintil mais pobre passa 70 minutos por dia em deslocamento, contra 84 do quarto quintil.",
+   "texto_template": "Em 2023 a viagem casa→trabalho por transporte coletivo dura em média {col23} minutos, contra {ind23} minutos no transporte individual motorizado ({razao23} vezes mais). Em 1977 eram {col77} e {ind77} minutos. Entre quem viaja, o quintil mais pobre passa {q1_23} minutos por dia em deslocamento, contra {q4_23} do quarto quintil.",
+   "valores": {
+    "col23": {
+     "fonte": "sistema",
+     "medida": "tempo_trab",
+     "categoria": "coletivo",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "int",
+     "valor": 70.55158163144289
+    },
+    "ind23": {
+     "fonte": "sistema",
+     "medida": "tempo_trab",
+     "categoria": "individual",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "int",
+     "valor": 32.04472945493894
+    },
+    "razao23": {
+     "fonte": "expr",
+     "op": "ratio",
+     "a": "col23",
+     "b": "ind23",
+     "fmt": "dec1",
+     "valor": 2.20165945637494
+    },
+    "col77": {
+     "fonte": "sistema",
+     "medida": "tempo_trab",
+     "categoria": "coletivo",
+     "ed": 1977,
+     "univ": "edicao",
+     "fmt": "int",
+     "valor": 55.74888321707149
+    },
+    "ind77": {
+     "fonte": "sistema",
+     "medida": "tempo_trab",
+     "categoria": "individual",
+     "ed": 1977,
+     "univ": "edicao",
+     "fmt": "int",
+     "valor": 26.22280536158865
+    },
+    "q1_23": {
+     "fonte": "sistema",
+     "medida": "tempo_diario_viajante",
+     "categoria": "q1",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "int",
+     "valor": 69.78624653674905
+    },
+    "q4_23": {
+     "fonte": "sistema",
+     "medida": "tempo_diario_viajante",
+     "categoria": "q4",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "int",
+     "valor": 83.68786728824439
+    }
+   }
+  },
+  "comparabilidade": [
+   "Renda: renda familiar per capita deflacionada (INPC); quintis por edição. 1977 tem 6,8% sem declaração (grupo 'nd').",
+   "1977 cobre só a área central pesquisada (~95% da população); use o universo 'área comparável de 1977' para séries estritas.",
+   "Duração informada pelo entrevistado (arredondamentos)."
+  ],
+  "dados": [
+   "OD Metrô-SP 1977–2023 (série harmonizada)"
+  ]
+ },
+ {
+  "id": 3,
+  "slug": "divisao-modal-e-classe",
+  "titulo": "Divisão modal por classe de renda",
+  "pergunta": "Como a escolha do modo varia com a renda, e o que mudou?",
+  "tema": "recorrente",
+  "status": "respondida",
+  "literatura": [
+   {
+    "autores": "Vasconcellos, E. A.",
+    "ano": 2001,
+    "titulo": "Transporte urbano, espaço e equidade: análise das políticas públicas",
+    "onde": "Annablume"
+   }
+  ],
+  "indicadores": [
+   "coletivo_q",
+   "individual_q",
+   "ape_q"
+  ],
+  "vista": {
+   "modo": "pesquisas"
+  },
+  "achado": {
+   "texto": "Em 2023, 35% das viagens do quintil mais pobre são feitas por transporte coletivo, contra 24% no quintil mais rico; o transporte individual motorizado responde por 15% e 60% das viagens desses grupos. Em 1977 o coletivo respondia por 45% no quintil mais pobre.",
+   "texto_template": "Em 2023, {col_q1} das viagens do quintil mais pobre são feitas por transporte coletivo, contra {col_q5} no quintil mais rico; o transporte individual motorizado responde por {ind_q1} e {ind_q5} das viagens desses grupos. Em 1977 o coletivo respondia por {col_q1_77} no quintil mais pobre.",
+   "valores": {
+    "col_q1": {
+     "fonte": "sistema",
+     "medida": "coletivo_q",
+     "categoria": "q1",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "pct0",
+     "valor": 0.35191266313558284
+    },
+    "col_q5": {
+     "fonte": "sistema",
+     "medida": "coletivo_q",
+     "categoria": "q5",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "pct0",
+     "valor": 0.24400639441228608
+    },
+    "ind_q1": {
+     "fonte": "sistema",
+     "medida": "individual_q",
+     "categoria": "q1",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "pct0",
+     "valor": 0.14789080658165055
+    },
+    "ind_q5": {
+     "fonte": "sistema",
+     "medida": "individual_q",
+     "categoria": "q5",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "pct0",
+     "valor": 0.6008012504983488
+    },
+    "col_q1_77": {
+     "fonte": "sistema",
+     "medida": "coletivo_q",
+     "categoria": "q1",
+     "ed": 1977,
+     "univ": "edicao",
+     "fmt": "pct0",
+     "valor": 0.4534623125979134
+    }
+   }
+  },
+  "comparabilidade": [
+   "Renda: renda familiar per capita deflacionada (INPC); quintis por edição. 1977 tem 6,8% sem declaração (grupo 'nd').",
+   "1977 cobre só a área central pesquisada (~95% da população); use o universo 'área comparável de 1977' para séries estritas."
+  ],
+  "dados": [
+   "OD Metrô-SP 1977–2023 (série harmonizada)"
+  ]
+ },
+ {
+  "id": 4,
+  "slug": "emprego-moradia-e-excesso",
+  "titulo": "Emprego–moradia e excesso de deslocamento",
+  "pergunta": "As pessoas moram longe demais dos empregos? O deslocamento casa–trabalho é maior que o mínimo possível?",
+  "tema": "recorrente",
+  "status": "parcial",
+  "literatura": [
+   {
+    "autores": "Hamilton, B. W.",
+    "ano": 1982,
+    "titulo": "Wasteful commuting",
+    "onde": "Journal of Political Economy 90(5), 1035-1053"
+   },
+   {
+    "autores": "White, M. J.",
+    "ano": 1988,
+    "titulo": "Urban commuting journeys are not 'wasteful'",
+    "onde": "Journal of Political Economy 96(5), 1097-1110"
+   },
+   {
+    "autores": "Horner, M. W.",
+    "ano": 2002,
+    "titulo": "Extensions to the concept of excess commuting",
+    "onde": "Environment and Planning A 34(3), 543-566"
+   },
+   {
+    "autores": "Wilson, A. G.",
+    "ano": 1967,
+    "titulo": "A statistical theory of spatial distribution models",
+    "onde": "Transportation Research 1(3), 253-269"
+   }
+  ],
+  "indicadores": [
+   "excesso de deslocamento",
+   "MTL",
+   "autocontenção"
+  ],
+  "vista": {
+   "modo": "pesquisas"
+  },
+  "achado": {
+   "texto": "Entre os ocupados com local fixo de trabalho, o deslocamento casa–trabalho médio (entre centroides de AMC) é de 10,0 km em 2023 e seria de 6,1 km se moradia e emprego fossem realocados para minimizá-lo: um excesso de 38%, pouco acima do de 2007 (36%). A hipótese de distância intra-unidade muda esse número entre 35% e 41%. Na série comparável com 1977–1997 (que inclui trabalho em casa) o excesso é de 34% em 1977 e 35% em 2023: sem tendência clara.",
+   "texto_template": "Entre os ocupados com local fixo de trabalho, o deslocamento casa–trabalho médio (entre centroides de AMC) é de {mtl23} km em 2023 e seria de {tmin23} km se moradia e emprego fossem realocados para minimizá-lo: um excesso de {exc23}, pouco acima do de 2007 ({exc07}). A hipótese de distância intra-unidade muda esse número entre {exc_lo} e {exc_hi}. Na série comparável com 1977–1997 (que inclui trabalho em casa) o excesso é de {exc77} em 1977 e {exc23i} em 2023: sem tendência clara.",
+   "valores": {
+    "mtl23": {
+     "fonte": "params",
+     "ed": 2023,
+     "nivel": "amc75",
+     "imped": "dist_km",
+     "caminho": "mtl_obs",
+     "fmt": "dec1",
+     "valor": 9.952275540192835
+    },
+    "tmin23": {
+     "fonte": "params",
+     "ed": 2023,
+     "nivel": "amc75",
+     "imped": "dist_km",
+     "caminho": "t_min",
+     "fmt": "dec1",
+     "valor": 6.147081368376516
+    },
+    "exc23": {
+     "fonte": "sistema",
+     "medida": "excesso_dist_km",
+     "categoria": "amc75",
+     "ed": 2023,
+     "univ": "area1977",
+     "fmt": "pct0",
+     "valor": 0.38234413390674565
+    },
+    "exc07": {
+     "fonte": "sistema",
+     "medida": "excesso_dist_km",
+     "categoria": "amc75",
+     "ed": 2007,
+     "univ": "area1977",
+     "fmt": "pct0",
+     "valor": 0.3636753371441843
+    },
+    "exc_lo": {
+     "fonte": "params",
+     "ed": 2023,
+     "nivel": "amc75",
+     "imped": "dist_km",
+     "caminho": [
+      "sensibilidade_intra",
+      "1.0",
+      "excesso"
+     ],
+     "fmt": "pct0",
+     "valor": 0.3488753982992102
+    },
+    "exc_hi": {
+     "fonte": "params",
+     "ed": 2023,
+     "nivel": "amc75",
+     "imped": "dist_km",
+     "caminho": [
+      "sensibilidade_intra",
+      "0.5",
+      "excesso"
+     ],
+     "fmt": "pct0",
+     "valor": 0.4130730555449216
+    },
+    "exc77": {
+     "fonte": "sistema",
+     "medida": "excesso_dist_km_incl",
+     "categoria": "amc75",
+     "ed": 1977,
+     "univ": "area1977",
+     "fmt": "pct0",
+     "valor": 0.34009209038854177
+    },
+    "exc23i": {
+     "fonte": "sistema",
+     "medida": "excesso_dist_km_incl",
+     "categoria": "amc75",
+     "ed": 2023,
+     "univ": "area1977",
+     "fmt": "pct0",
+     "valor": 0.34504323279729243
+    }
+   }
+  },
+  "comparabilidade": [
+   "Excesso depende da agregação (MAUP): publicamos só AMC, com faixa de sensibilidade à distância intra-unidade (fator 0,5–1,0).",
+   "Trabalho em casa e sem endereço fixo só é identificável de 2007 em diante; 1977–1997 os incluem como deslocamento intra-zonal (ruptura de tratamento).",
+   "Município e subprefeitura são dominados pela capital como unidade única e não têm excesso publicado."
+  ],
+  "dados": [
+   "OD Metrô-SP 1977–2023 (série harmonizada)"
+  ],
+  "pendencias": [
+   "Recalcular com tempo observado por modo (regressão dist × modo)."
+  ]
+ },
+ {
+  "id": 5,
+  "slug": "concentracao-de-empregos",
+  "titulo": "Onde estão os empregos?",
+  "pergunta": "Quão concentrados estão os empregos na metrópole?",
+  "tema": "recorrente",
+  "status": "respondida",
+  "literatura": [
+   {
+    "autores": "Hansen, W. G.",
+    "ano": 1959,
+    "titulo": "How accessibility shapes land use",
+    "onde": "Journal of the American Institute of Planners 25(2), 73-76"
+   }
+  ],
+  "indicadores": [
+   "empregos_od",
+   "jobs_housing"
+  ],
+  "vista": {
+   "modo": "mapa",
+   "ed": 2023,
+   "nivel": "amc146",
+   "metrica": "jobs_housing"
+  },
+  "achado": {
+   "texto": "As dez AMC com mais empregos concentravam 49% dos empregos com local fixo em 1987 e 47% em 2023 — a concentração central praticamente não se dispersou em 36 anos.",
+   "texto_template": "As dez AMC com mais empregos concentravam {top87} dos empregos com local fixo em 1987 e {top23} em 2023 — a concentração central praticamente não se dispersou em 36 anos.",
+   "valores": {
+    "top87": {
+     "fonte": "topshare",
+     "nivel": "amc146",
+     "ed": 1987,
+     "campo": "empregos_od",
+     "n": 10,
+     "fmt": "pct0",
+     "valor": 0.49290059129080843
+    },
+    "top23": {
+     "fonte": "topshare",
+     "nivel": "amc146",
+     "ed": 2023,
+     "campo": "empregos_od",
+     "n": 10,
+     "fmt": "pct0",
+     "valor": 0.4668316817702115
+    }
+   }
+  },
+  "comparabilidade": [
+   "Empregos = ocupados com local fixo de trabalho na RMSP, pela zona do 1º trabalho (não inclui trabalho em casa/sem local fixo)."
+  ],
+  "dados": [
+   "OD Metrô-SP 1977–2023 (série harmonizada)"
+  ]
+ },
+ {
+  "id": 6,
+  "slug": "acessibilidade-e-potencial",
+  "titulo": "Desigualdade de acesso a empregos",
+  "pergunta": "Quão desigual é o acesso a empregos entre as áreas da metrópole (potencial de Hansen)?",
+  "tema": "recorrente",
+  "status": "parcial",
+  "literatura": [
+   {
+    "autores": "Hansen, W. G.",
+    "ano": 1959,
+    "titulo": "How accessibility shapes land use",
+    "onde": "Journal of the American Institute of Planners 25(2), 73-76"
+   },
+   {
+    "autores": "Boisjoly, G.; Moreno-Monroy, A. I.; El-Geneidy, A.",
+    "ano": 2017,
+    "titulo": "Informality and accessibility to jobs by public transit: Evidence from the São Paulo Metropolitan Region",
+    "onde": "Journal of Transport Geography 64, 89-96",
+    "doi": "10.1016/j.jtrangeo.2017.08.011"
+   }
+  ],
+  "indicadores": [
+   "hansen_emp",
+   "gini_hansen_emp"
+  ],
+  "vista": {
+   "modo": "mapa",
+   "ed": 2023,
+   "nivel": "amc75"
+  },
+  "achado": {
+   "texto": "O Gini do potencial de empregos entre as AMC (ponderado pela população) caiu de 0,42 em 1977 para 0,37 em 1997 — mesmo tratamento dos dados — e chegou a 0,34 em 2023. A partir de 2007 o β é calibrado sem quem trabalha em casa ou sem local fixo, o que reduz a comparabilidade com o período anterior; a queda até 1997 é a leitura mais segura.",
+   "texto_template": "O Gini do potencial de empregos entre as AMC (ponderado pela população) caiu de {g77} em 1977 para {g97} em 1997 — mesmo tratamento dos dados — e chegou a {g23} em 2023. A partir de 2007 o β é calibrado sem quem trabalha em casa ou sem local fixo, o que reduz a comparabilidade com o período anterior; a queda até 1997 é a leitura mais segura.",
+   "valores": {
+    "g77": {
+     "fonte": "sistema",
+     "medida": "gini_hansen_emp",
+     "categoria": "amc75",
+     "ed": 1977,
+     "univ": "area1977",
+     "fmt": "dec2",
+     "valor": 0.4248531093612339
+    },
+    "g97": {
+     "fonte": "sistema",
+     "medida": "gini_hansen_emp",
+     "categoria": "amc75",
+     "ed": 1997,
+     "univ": "area1977",
+     "fmt": "dec2",
+     "valor": 0.37115449323769883
+    },
+    "g23": {
+     "fonte": "sistema",
+     "medida": "gini_hansen_emp",
+     "categoria": "amc75",
+     "ed": 2023,
+     "univ": "area1977",
+     "fmt": "dec2",
+     "valor": 0.3359087127438058
+    }
+   }
+  },
+  "comparabilidade": [
+   "Acessibilidade aqui é por distância (centroides), não por tempo de transporte público real.",
+   "β difere por edição; Gini de potenciais com β distintos deve ser lido como ordem de grandeza.",
+   "Trabalho em casa e sem endereço fixo só é identificável de 2007 em diante; 1977–1997 os incluem como deslocamento intra-zonal (ruptura de tratamento)."
+  ],
+  "dados": [
+   "OD Metrô-SP 1977–2023 (série harmonizada)"
+  ],
+  "pendencias": [
+   "Acessibilidade por tempo de transporte público (GTFS/AOP-IPEA) — F6."
+  ]
+ },
+ {
+  "id": 7,
+  "slug": "exclusao-e-imobilidade",
+  "titulo": "Imobilidade e exclusão",
+  "pergunta": "Quem não se desloca? A imobilidade diária é mais frequente entre os mais pobres?",
+  "tema": "recorrente",
+  "status": "respondida",
+  "literatura": [
+   {
+    "autores": "Lucas, K.",
+    "ano": 2012,
+    "titulo": "Transport and social exclusion: Where are we now?",
+    "onde": "Transport Policy 20, 105-113",
+    "doi": "10.1016/j.tranpol.2012.01.013"
+   }
+  ],
+  "indicadores": [
+   "imob_15m por quintil"
+  ],
+  "vista": {
+   "modo": "pesquisas"
+  },
+  "achado": {
+   "texto": "Em 2023, 46% das pessoas de 15 anos ou mais do quintil mais pobre não fizeram nenhuma viagem no dia, contra 34% no quintil mais rico. Em 1977 os números eram 43% e 28%.",
+   "texto_template": "Em 2023, {q1} das pessoas de 15 anos ou mais do quintil mais pobre não fizeram nenhuma viagem no dia, contra {q5} no quintil mais rico. Em 1977 os números eram {q1_77} e {q5_77}.",
+   "valores": {
+    "q1": {
+     "fonte": "sistema",
+     "medida": "imob_15m",
+     "categoria": "q1",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "pct0",
+     "valor": 0.4554749532865436
+    },
+    "q5": {
+     "fonte": "sistema",
+     "medida": "imob_15m",
+     "categoria": "q5",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "pct0",
+     "valor": 0.3413456270194246
+    },
+    "q1_77": {
+     "fonte": "sistema",
+     "medida": "imob_15m",
+     "categoria": "q1",
+     "ed": 1977,
+     "univ": "edicao",
+     "fmt": "pct0",
+     "valor": 0.4336430157254577
+    },
+    "q5_77": {
+     "fonte": "sistema",
+     "medida": "imob_15m",
+     "categoria": "q5",
+     "ed": 1977,
+     "univ": "edicao",
+     "fmt": "pct0",
+     "valor": 0.2819933449708707
+    }
+   }
+  },
+  "comparabilidade": [
+   "Renda: renda familiar per capita deflacionada (INPC); quintis por edição. 1977 tem 6,8% sem declaração (grupo 'nd').",
+   "1977 cobre só a área central pesquisada (~95% da população); use o universo 'área comparável de 1977' para séries estritas.",
+   "A OD registra um dia útil; imobilidade de um dia não é imobilidade estrutural."
+  ],
+  "dados": [
+   "OD Metrô-SP 1977–2023 (série harmonizada)"
+  ]
+ },
+ {
+  "id": 8,
+  "slug": "motorizacao-e-renda",
+  "titulo": "Motorização",
+  "pergunta": "Quanto a motorização cresceu e como isso se relaciona à mobilidade?",
+  "tema": "recorrente",
+  "status": "respondida",
+  "literatura": [
+   {
+    "autores": "Vasconcellos, E. A.",
+    "ano": 2001,
+    "titulo": "Transporte urbano, espaço e equidade: análise das políticas públicas",
+    "onde": "Annablume"
+   }
+  ],
+  "indicadores": [
+   "autos_100hab"
+  ],
+  "vista": {
+   "modo": "mapa",
+   "ed": 2023,
+   "nivel": "amc146",
+   "metrica": "autos_100hab"
+  },
+  "achado": {
+   "texto": "A frota das famílias passou de 13,5 para 23,6 automóveis por 100 habitantes entre 1977 e 2023, e o transporte individual motorizado é o modo de 60% das viagens do quintil mais rico.",
+   "texto_template": "A frota das famílias passou de {a77} para {a23} automóveis por 100 habitantes entre 1977 e 2023, e o transporte individual motorizado é o modo de {ind_q5} das viagens do quintil mais rico.",
+   "valores": {
+    "a77": {
+     "fonte": "sistema",
+     "medida": "autos_100hab",
+     "categoria": "todos",
+     "ed": 1977,
+     "univ": "edicao",
+     "fmt": "dec1",
+     "valor": 13.545046341179994
+    },
+    "a23": {
+     "fonte": "sistema",
+     "medida": "autos_100hab",
+     "categoria": "todos",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "dec1",
+     "valor": 23.594278245960012
+    },
+    "ind_q5": {
+     "fonte": "sistema",
+     "medida": "individual_q",
+     "categoria": "q5",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "pct0",
+     "valor": 0.6008012504983488
+    }
+   }
+  },
+  "comparabilidade": [
+   "1977 cobre só a área central pesquisada (~95% da população); use o universo 'área comparável de 1977' para séries estritas."
+  ],
+  "dados": [
+   "OD Metrô-SP 1977–2023 (série harmonizada)"
+  ]
+ },
+ {
+  "id": 9,
+  "slug": "genero-e-mobilidade",
+  "titulo": "Gênero e mobilidade",
+  "pergunta": "Homens e mulheres se deslocam de modo diferente? A diferença mudou?",
+  "tema": "recorrente",
+  "status": "respondida",
+  "literatura": [
+   {
+    "autores": "Sánchez de Madariaga, I.",
+    "ano": 2013,
+    "titulo": "The mobility of care: a new concept in urban transportation",
+    "onde": "in Fair Shared Cities, Ashgate"
+   }
+  ],
+  "indicadores": [
+   "ind_mob_sexo",
+   "trabalho_sexo"
+  ],
+  "vista": {
+   "modo": "pesquisas"
+  },
+  "achado": {
+   "texto": "Em 1977 as mulheres faziam 1,67 viagens por habitante contra 2,50 dos homens (razão de 0,67); em 2023 são 1,61 e 1,76 (razão de 0,91). A diferença encolheu sobretudo porque a mobilidade masculina caiu.",
+   "texto_template": "Em 1977 as mulheres faziam {f77} viagens por habitante contra {m77} dos homens (razão de {r77}); em 2023 são {f23} e {m23} (razão de {r23}). A diferença encolheu sobretudo porque a mobilidade masculina caiu.",
+   "valores": {
+    "f77": {
+     "fonte": "sistema",
+     "medida": "ind_mob_sexo",
+     "categoria": "feminino",
+     "ed": 1977,
+     "univ": "edicao",
+     "fmt": "dec2",
+     "valor": 1.6703716608955212
+    },
+    "m77": {
+     "fonte": "sistema",
+     "medida": "ind_mob_sexo",
+     "categoria": "masculino",
+     "ed": 1977,
+     "univ": "edicao",
+     "fmt": "dec2",
+     "valor": 2.4975476135323174
+    },
+    "r77": {
+     "fonte": "expr",
+     "op": "ratio",
+     "a": "f77",
+     "b": "m77",
+     "fmt": "dec2",
+     "valor": 0.6688047314273583
+    },
+    "f23": {
+     "fonte": "sistema",
+     "medida": "ind_mob_sexo",
+     "categoria": "feminino",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "dec2",
+     "valor": 1.6062826743039538
+    },
+    "m23": {
+     "fonte": "sistema",
+     "medida": "ind_mob_sexo",
+     "categoria": "masculino",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "dec2",
+     "valor": 1.7607643489339826
+    },
+    "r23": {
+     "fonte": "expr",
+     "op": "ratio",
+     "a": "f23",
+     "b": "m23",
+     "fmt": "dec2",
+     "valor": 0.9122644238432267
+    }
+   }
+  },
+  "comparabilidade": [
+   "1977 cobre só a área central pesquisada (~95% da população); use o universo 'área comparável de 1977' para séries estritas.",
+   "População inteira (inclui crianças)."
+  ],
+  "dados": [
+   "OD Metrô-SP 1977–2023 (série harmonizada)"
+  ]
+ },
+ {
+  "id": 10,
+  "slug": "picos-de-horario",
+  "titulo": "Horários de pico",
+  "pergunta": "O pico da manhã está se intensificando?",
+  "tema": "recorrente",
+  "status": "respondida",
+  "literatura": [],
+  "indicadores": [
+   "pico_manha",
+   "pico_tarde"
+  ],
+  "vista": {
+   "modo": "pesquisas"
+  },
+  "achado": {
+   "texto": "A parcela das viagens que começam entre 6h e 8h59 passou de 21% em 1977 para 27% em 2023, enquanto a do pico da tarde (16h–19h59) ficou em torno de 29%: o pico da manhã ficou mais concentrado.",
+   "texto_template": "A parcela das viagens que começam entre 6h e 8h59 passou de {m77} em 1977 para {m23} em 2023, enquanto a do pico da tarde (16h–19h59) ficou em torno de {t23}: o pico da manhã ficou mais concentrado.",
+   "valores": {
+    "m77": {
+     "fonte": "sistema",
+     "medida": "pico_manha",
+     "categoria": "todos",
+     "ed": 1977,
+     "univ": "edicao",
+     "fmt": "pct0",
+     "valor": 0.20930259010339858
+    },
+    "m23": {
+     "fonte": "sistema",
+     "medida": "pico_manha",
+     "categoria": "todos",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "pct0",
+     "valor": 0.2694814738771383
+    },
+    "t23": {
+     "fonte": "sistema",
+     "medida": "pico_tarde",
+     "categoria": "todos",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "pct0",
+     "valor": 0.285334713882962
+    }
+   }
+  },
+  "comparabilidade": [
+   "1977 cobre só a área central pesquisada (~95% da população); use o universo 'área comparável de 1977' para séries estritas.",
+   "Hora de saída informada pelo entrevistado."
+  ],
+  "dados": [
+   "OD Metrô-SP 1977–2023 (série harmonizada)"
+  ]
+ },
+ {
+  "id": 11,
+  "slug": "queda-pos-pandemia",
+  "titulo": "A queda de 2023",
+  "pergunta": "Quanto a mobilidade caiu depois da pandemia?",
+  "tema": "emergente",
+  "status": "respondida",
+  "literatura": [],
+  "indicadores": [
+   "viagens",
+   "ind_mob"
+  ],
+  "vista": {
+   "modo": "pesquisas"
+  },
+  "achado": {
+   "texto": "As viagens diárias da região foram de 42,0 milhões em 2017 para 35,7 milhões em 2023 (variação de -15%) e o índice de mobilidade caiu de 2,02 para 1,68 viagens por habitante.",
+   "texto_template": "As viagens diárias da região foram de {v17} milhões em 2017 para {v23} milhões em 2023 (variação de {var}) e o índice de mobilidade caiu de {i17} para {i23} viagens por habitante.",
+   "valores": {
+    "v17": {
+     "fonte": "sistema",
+     "medida": "viagens",
+     "categoria": "todos",
+     "ed": 2017,
+     "univ": "edicao",
+     "fmt": "mi1",
+     "valor": 42006659.87173282
+    },
+    "v23": {
+     "fonte": "sistema",
+     "medida": "viagens",
+     "categoria": "todos",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "mi1",
+     "valor": 35661061.99828099
+    },
+    "var": {
+     "fonte": "expr",
+     "op": "pct_change",
+     "a": "v23",
+     "b": "v17",
+     "fmt": "pct0",
+     "valor": -0.15106171004379054
+    },
+    "i17": {
+     "fonte": "sistema",
+     "medida": "ind_mob",
+     "categoria": "todos",
+     "ed": 2017,
+     "univ": "edicao",
+     "fmt": "dec2",
+     "valor": 2.017449037957883
+    },
+    "i23": {
+     "fonte": "sistema",
+     "medida": "ind_mob",
+     "categoria": "todos",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "dec2",
+     "valor": 1.679206597959105
+    }
+   }
+  },
+  "comparabilidade": [
+   "O campo de 2023 foi feito no pós-pandemia; a queda é real nos dados, não efeito da harmonização."
+  ],
+  "dados": [
+   "OD Metrô-SP 1977–2023 (série harmonizada)"
+  ]
+ },
+ {
+  "id": 12,
+  "slug": "aplicativos-e-motos",
+  "titulo": "Aplicativos e motos",
+  "pergunta": "Táxi/aplicativo e motocicleta ganharam espaço?",
+  "tema": "emergente",
+  "status": "respondida",
+  "literatura": [],
+  "indicadores": [
+   "pct_taxi_app",
+   "pct_moto"
+  ],
+  "vista": {
+   "modo": "pesquisas"
+  },
+  "achado": {
+   "texto": "Táxi e aplicativo passaram de 1,1% das viagens em 2017 para 3,1% em 2023; a moto, de 2,5% para 3,5%. Ainda são parcelas pequenas, mas a de táxi/aplicativo quase triplicou.",
+   "texto_template": "Táxi e aplicativo passaram de {app17} das viagens em 2017 para {app23} em 2023; a moto, de {m17} para {m23}. Ainda são parcelas pequenas, mas a de táxi/aplicativo quase triplicou.",
+   "valores": {
+    "app17": {
+     "fonte": "sistema",
+     "medida": "pct_taxi_app",
+     "categoria": "todos",
+     "ed": 2017,
+     "univ": "edicao",
+     "fmt": "pct1",
+     "valor": 0.011159602656902063
+    },
+    "app23": {
+     "fonte": "sistema",
+     "medida": "pct_taxi_app",
+     "categoria": "todos",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "pct1",
+     "valor": 0.031188650434104594
+    },
+    "m17": {
+     "fonte": "sistema",
+     "medida": "pct_moto",
+     "categoria": "todos",
+     "ed": 2017,
+     "univ": "edicao",
+     "fmt": "pct1",
+     "valor": 0.02533193873262939
+    },
+    "m23": {
+     "fonte": "sistema",
+     "medida": "pct_moto",
+     "categoria": "todos",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "pct1",
+     "valor": 0.03460930597509474
+    }
+   }
+  },
+  "comparabilidade": [
+   "Táxi e aplicativo compartilham o mesmo código de modo (não distinguíveis); a moto inclui mototáxi.",
+   "Em 1977 'táxi' existia como modo próprio e não é comparável a aplicativo."
+  ],
+  "dados": [
+   "OD Metrô-SP 1977–2023 (série harmonizada)"
+  ]
+ },
+ {
+  "id": 13,
+  "slug": "trabalho-hibrido-e-remoto",
+  "titulo": "Trabalho híbrido, em casa e sem local fixo",
+  "pergunta": "Quantos trabalham em casa, de forma híbrida ou sem local fixo?",
+  "tema": "emergente",
+  "status": "respondida",
+  "literatura": [],
+  "indicadores": [
+   "trab_domicilio",
+   "sem_local_fixo",
+   "trab_hibrido"
+  ],
+  "vista": {
+   "modo": "mapa",
+   "ed": 2023,
+   "nivel": "amc146",
+   "metrica": "jobs_housing"
+  },
+  "achado": {
+   "texto": "Em 2023, 14% dos ocupados trabalham no próprio domicílio (eram 10% em 2007), 10% não têm endereço fixo e 6,0% declaram frequência presencial de trabalho híbrido.",
+   "texto_template": "Em 2023, {casa} dos ocupados trabalham no próprio domicílio (eram {casa07} em 2007), {sem} não têm endereço fixo e {hib} declaram frequência presencial de trabalho híbrido.",
+   "valores": {
+    "casa": {
+     "fonte": "sistema",
+     "medida": "trab_domicilio",
+     "categoria": "todos",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "pct0",
+     "valor": 0.14042456994945737
+    },
+    "casa07": {
+     "fonte": "sistema",
+     "medida": "trab_domicilio",
+     "categoria": "todos",
+     "ed": 2007,
+     "univ": "edicao",
+     "fmt": "pct0",
+     "valor": 0.09960920663959995
+    },
+    "sem": {
+     "fonte": "sistema",
+     "medida": "sem_local_fixo",
+     "categoria": "todos",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "pct0",
+     "valor": 0.09903667330358792
+    },
+    "hib": {
+     "fonte": "sistema",
+     "medida": "trab_hibrido",
+     "categoria": "todos",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "pct1",
+     "valor": 0.06004635413638177
+    }
+   }
+  },
+  "comparabilidade": [
+   "Trabalho em casa e sem endereço fixo só é identificável de 2007 em diante; 1977–1997 os incluem como deslocamento intra-zonal (ruptura de tratamento).",
+   "Híbrido: quem declara frequência de trabalho presencial (dias por semana/mês); só 2023."
+  ],
+  "dados": [
+   "OD Metrô-SP 1977–2023 (série harmonizada)"
+  ]
+ },
+ {
+  "id": 14,
+  "slug": "imobilidade-oculta",
+  "titulo": "Imobilidade oculta: quem fica em casa?",
+  "pergunta": "A imobilidade diária difere por sexo e idade?",
+  "tema": "emergente",
+  "status": "respondida",
+  "literatura": [
+   {
+    "autores": "Lucas, K.",
+    "ano": 2012,
+    "titulo": "Transport and social exclusion: Where are we now?",
+    "onde": "Transport Policy 20, 105-113",
+    "doi": "10.1016/j.tranpol.2012.01.013"
+   }
+  ],
+  "indicadores": [
+   "imob_sexo",
+   "imob_idade"
+  ],
+  "vista": {
+   "modo": "pesquisas"
+  },
+  "achado": {
+   "texto": "Em 2023, 43% das mulheres e 35% dos homens de 15 anos ou mais não se deslocaram no dia, contra 48% e 21% em 1977 — a lacuna de gênero encolheu de 27,1 para 7,8 pontos percentuais porque a imobilidade masculina subiu e a feminina caiu. Entre idosos (60+) a imobilidade é de 61%.",
+   "texto_template": "Em 2023, {fem} das mulheres e {mas} dos homens de 15 anos ou mais não se deslocaram no dia, contra {fem77} e {mas77} em 1977 — a lacuna de gênero encolheu de {gap77} para {gap23} pontos percentuais porque a imobilidade masculina subiu e a feminina caiu. Entre idosos (60+) a imobilidade é de {ido}.",
+   "valores": {
+    "fem": {
+     "fonte": "sistema",
+     "medida": "imob_sexo",
+     "categoria": "feminino",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "pct0",
+     "valor": 0.42824093043052497
+    },
+    "mas": {
+     "fonte": "sistema",
+     "medida": "imob_sexo",
+     "categoria": "masculino",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "pct0",
+     "valor": 0.3497472216786633
+    },
+    "fem77": {
+     "fonte": "sistema",
+     "medida": "imob_sexo",
+     "categoria": "feminino",
+     "ed": 1977,
+     "univ": "edicao",
+     "fmt": "pct0",
+     "valor": 0.4831579919247951
+    },
+    "mas77": {
+     "fonte": "sistema",
+     "medida": "imob_sexo",
+     "categoria": "masculino",
+     "ed": 1977,
+     "univ": "edicao",
+     "fmt": "pct0",
+     "valor": 0.21194955725137146
+    },
+    "gap77": {
+     "fonte": "expr",
+     "op": "diff",
+     "a": "fem77_",
+     "b": "mas77_",
+     "fmt": "pp1",
+     "valor": 0.2712084346734236
+    },
+    "fem77_": {
+     "fonte": "sistema",
+     "medida": "imob_sexo",
+     "categoria": "feminino",
+     "ed": 1977,
+     "univ": "edicao",
+     "fmt": "dec2",
+     "valor": 0.4831579919247951
+    },
+    "mas77_": {
+     "fonte": "sistema",
+     "medida": "imob_sexo",
+     "categoria": "masculino",
+     "ed": 1977,
+     "univ": "edicao",
+     "fmt": "dec2",
+     "valor": 0.21194955725137146
+    },
+    "gap23": {
+     "fonte": "expr",
+     "op": "diff",
+     "a": "fem23_",
+     "b": "mas23_",
+     "fmt": "pp1",
+     "valor": 0.07849370875186168
+    },
+    "fem23_": {
+     "fonte": "sistema",
+     "medida": "imob_sexo",
+     "categoria": "feminino",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "dec2",
+     "valor": 0.42824093043052497
+    },
+    "mas23_": {
+     "fonte": "sistema",
+     "medida": "imob_sexo",
+     "categoria": "masculino",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "dec2",
+     "valor": 0.3497472216786633
+    },
+    "ido": {
+     "fonte": "sistema",
+     "medida": "imob_idade",
+     "categoria": "60+",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "pct0",
+     "valor": 0.6053093987723445
+    }
+   }
+  },
+  "comparabilidade": [
+   "1977 cobre só a área central pesquisada (~95% da população); use o universo 'área comparável de 1977' para séries estritas.",
+   "Um dia útil de pesquisa."
+  ],
+  "dados": [
+   "OD Metrô-SP 1977–2023 (série harmonizada)"
+  ]
+ },
+ {
+  "id": 15,
+  "slug": "mobilidade-do-cuidado",
+  "titulo": "Mobilidade do cuidado",
+  "pergunta": "As mulheres concentram as viagens de cuidado (compras e saúde)?",
+  "tema": "emergente",
+  "status": "parcial",
+  "literatura": [
+   {
+    "autores": "Sánchez de Madariaga, I.",
+    "ano": 2013,
+    "titulo": "The mobility of care: a new concept in urban transportation",
+    "onde": "in Fair Shared Cities, Ashgate"
+   }
+  ],
+  "indicadores": [
+   "cuidado_sexo"
+  ],
+  "vista": {
+   "modo": "pesquisas"
+  },
+  "achado": {
+   "texto": "Em 2023, 5,5% das viagens das mulheres têm como destino compras ou saúde, contra 3,5% das viagens dos homens (1,6 vezes mais). Em 1977 a razão era de 2,8.",
+   "texto_template": "Em 2023, {f} das viagens das mulheres têm como destino compras ou saúde, contra {m} das viagens dos homens ({r} vezes mais). Em 1977 a razão era de {r77}.",
+   "valores": {
+    "f": {
+     "fonte": "sistema",
+     "medida": "cuidado_sexo",
+     "categoria": "feminino",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "pct1",
+     "valor": 0.05492723144637215
+    },
+    "m": {
+     "fonte": "sistema",
+     "medida": "cuidado_sexo",
+     "categoria": "masculino",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "pct1",
+     "valor": 0.03501361361348105
+    },
+    "r": {
+     "fonte": "expr",
+     "op": "ratio",
+     "a": "f_",
+     "b": "m_",
+     "fmt": "dec1",
+     "valor": 1.5687392924569172
+    },
+    "f_": {
+     "fonte": "sistema",
+     "medida": "cuidado_sexo",
+     "categoria": "feminino",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "dec2",
+     "valor": 0.05492723144637215
+    },
+    "m_": {
+     "fonte": "sistema",
+     "medida": "cuidado_sexo",
+     "categoria": "masculino",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "dec2",
+     "valor": 0.03501361361348105
+    },
+    "r77": {
+     "fonte": "expr",
+     "op": "ratio",
+     "a": "f77_",
+     "b": "m77_",
+     "fmt": "dec1",
+     "valor": 2.798042418382793
+    },
+    "f77_": {
+     "fonte": "sistema",
+     "medida": "cuidado_sexo",
+     "categoria": "feminino",
+     "ed": 1977,
+     "univ": "edicao",
+     "fmt": "dec2",
+     "valor": 0.062015575317487345
+    },
+    "m77_": {
+     "fonte": "sistema",
+     "medida": "cuidado_sexo",
+     "categoria": "masculino",
+     "ed": 1977,
+     "univ": "edicao",
+     "fmt": "dec2",
+     "valor": 0.022163915353839055
+    }
+   }
+  },
+  "comparabilidade": [
+   "Proxy: compras + saúde no destino. Acompanhar dependentes (escola, levar filhos) não é identificável de forma harmonizada."
+  ],
+  "dados": [
+   "OD Metrô-SP 1977–2023 (série harmonizada)"
+  ],
+  "pendencias": [
+   "Encadeamento de viagens (tripchaining) e acompanhamento de dependentes."
+  ]
+ },
+ {
+  "id": 16,
+  "slug": "proximidade-15-minutos",
+  "titulo": "Cidade de 15 minutos",
+  "pergunta": "Quanto da vida cotidiana se resolve a pé e perto de casa?",
+  "tema": "emergente",
+  "status": "parcial",
+  "literatura": [
+   {
+    "autores": "Moreno, C.; Allam, Z.; Chabaud, D.; Gall, C.; Pratlong, F.",
+    "ano": 2021,
+    "titulo": "Introducing the '15-Minute City': Sustainability, resilience and place identity in future post-pandemic cities",
+    "onde": "Smart Cities 4(1), 93-111",
+    "doi": "10.3390/smartcities4010006"
+   }
+  ],
+  "indicadores": [
+   "pct_ape_ate15",
+   "cnefe"
+  ],
+  "vista": {
+   "modo": "mapa",
+   "ed": 2023,
+   "nivel": "muni",
+   "metrica": "pct_ape_ate15"
+  },
+  "achado": {
+   "texto": "Em 2023, 28% das viagens da região são a pé; em São Paulo, 22% das viagens são a pé e duram até 15 minutos, contra 25% em Guarulhos.",
+   "texto_template": "Em 2023, {ape} das viagens da região são a pé; em São Paulo, {sp} das viagens são a pé e duram até 15 minutos, contra {gru} em Guarulhos.",
+   "valores": {
+    "ape": {
+     "fonte": "sistema",
+     "medida": "divisao_modal",
+     "categoria": "a_pe",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "pct0",
+     "valor": 0.28200185099084435
+    },
+    "sp": {
+     "fonte": "ind",
+     "nivel": "muni",
+     "codigo": "3550308",
+     "ed": 2023,
+     "campo": "pct_ape_ate15",
+     "fmt": "pct0",
+     "valor": 0.21650455338385902
+    },
+    "gru": {
+     "fonte": "ind",
+     "nivel": "muni",
+     "codigo": "3518800",
+     "ed": 2023,
+     "campo": "pct_ape_ate15",
+     "fmt": "pct0",
+     "valor": 0.24655690953646814
+    }
+   }
+  },
+  "comparabilidade": [
+   "A pé até 15 min mede o comportamento observado, não a oferta de serviços a 15 minutos."
+  ],
+  "dados": [
+   "OD Metrô-SP 1977–2023 (série harmonizada)",
+   "CNEFE 2022 (endereços por uso)"
+  ],
+  "pendencias": [
+   "Oferta de destinos essenciais a 15 min (CNEFE) por unidade — cruzar com a caminhada."
+  ]
+ },
+ {
+  "id": 17,
+  "slug": "pobreza-de-tempo",
+  "titulo": "Pobreza de tempo",
+  "pergunta": "O tempo diário gasto em deslocamentos difere entre classes?",
+  "tema": "emergente",
+  "status": "parcial",
+  "literatura": [
+   {
+    "autores": "Vickery, C.",
+    "ano": 1977,
+    "titulo": "The time-poor: a new look at poverty",
+    "onde": "Journal of Human Resources 12(1), 27-48"
+   },
+   {
+    "autores": "Pereira, R. H. M.; Schwanen, T.",
+    "ano": 2013,
+    "titulo": "Tempo de deslocamento casa-trabalho no Brasil (1992-2009): diferenças entre regiões metropolitanas, níveis de renda e sexo",
+    "onde": "IPEA, Texto para Discussão 1813"
+   }
+  ],
+  "indicadores": [
+   "tempo_diario_viajante"
+  ],
+  "vista": {
+   "modo": "pesquisas"
+  },
+  "achado": {
+   "texto": "Entre quem viaja, o quintil mais pobre gasta 70 minutos por dia em deslocamentos e o quarto quintil, 84 (2023), e o quintil mais rico, 77 — o tempo diário de deslocamento não cresce de forma monótona com a renda.",
+   "texto_template": "Entre quem viaja, o quintil mais pobre gasta {q1} minutos por dia em deslocamentos e o quarto quintil, {q4} (2023), e o quintil mais rico, {q5} — o tempo diário de deslocamento não cresce de forma monótona com a renda.",
+   "valores": {
+    "q1": {
+     "fonte": "sistema",
+     "medida": "tempo_diario_viajante",
+     "categoria": "q1",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "int",
+     "valor": 69.78624653674905
+    },
+    "q4": {
+     "fonte": "sistema",
+     "medida": "tempo_diario_viajante",
+     "categoria": "q4",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "int",
+     "valor": 83.68786728824439
+    },
+    "q5": {
+     "fonte": "sistema",
+     "medida": "tempo_diario_viajante",
+     "categoria": "q5",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "int",
+     "valor": 76.5630257490258
+    }
+   }
+  },
+  "comparabilidade": [
+   "Só tempo de deslocamento de quem viaja; pobreza de tempo plena exige jornada de trabalho e cuidado (não disponíveis)."
+  ],
+  "dados": [
+   "OD Metrô-SP 1977–2023 (série harmonizada)"
+  ],
+  "pendencias": [
+   "Tempo de trabalho e de cuidado não pago (fora da OD)."
+  ]
+ },
+ {
+  "id": 18,
+  "slug": "envelhecimento",
+  "titulo": "Envelhecimento",
+  "pergunta": "Como o envelhecimento aparece na mobilidade?",
+  "tema": "emergente",
+  "status": "respondida",
+  "literatura": [],
+  "indicadores": [
+   "ind_mob_idade",
+   "imob_idade",
+   "censo pct_60m"
+  ],
+  "vista": {
+   "modo": "pesquisas"
+  },
+  "achado": {
+   "texto": "A proporção de idosos (60+) na região passou de 5,7% em 1970 para 16,3% em 2022 (Censo). Em 2023, os idosos fazem 1,04 viagens por habitante ao dia, contra 1,79 de quem tem 15–59 anos, e 61% deles não se deslocam no dia.",
+   "texto_template": "A proporção de idosos (60+) na região passou de {c70}% em 1970 para {c22}% em 2022 (Censo). Em 2023, os idosos fazem {i60} viagens por habitante ao dia, contra {i15} de quem tem 15–59 anos, e {imob} deles não se deslocam no dia.",
+   "valores": {
+    "c70": {
+     "fonte": "censo",
+     "ano_censo": 1970,
+     "campo": "pct_60m",
+     "fmt": "dec1",
+     "valor": 5.713514423238963
+    },
+    "c22": {
+     "fonte": "censo",
+     "ano_censo": 2022,
+     "campo": "pct_60m",
+     "fmt": "dec1",
+     "valor": 16.33147757245338
+    },
+    "i60": {
+     "fonte": "sistema",
+     "medida": "ind_mob_idade",
+     "categoria": "60+",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "dec2",
+     "valor": 1.0353007540461794
+    },
+    "i15": {
+     "fonte": "sistema",
+     "medida": "ind_mob_idade",
+     "categoria": "15-59",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "dec2",
+     "valor": 1.7893350157053949
+    },
+    "imob": {
+     "fonte": "sistema",
+     "medida": "imob_idade",
+     "categoria": "60+",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "pct0",
+     "valor": 0.6053093987723445
+    }
+   }
+  },
+  "comparabilidade": [
+   "Censo Demográfico 1970–2022 interpolado por área (camada censitária do laboratório): 1970/1980 só em resolução municipal."
+  ],
+  "dados": [
+   "OD Metrô-SP 1977–2023 (série harmonizada)",
+   "Censo Demográfico 1970–2022 interpolado por área (camada censitária do laboratório)"
+  ]
+ },
+ {
+  "id": 19,
+  "slug": "raca-e-mobilidade",
+  "titulo": "Raça/cor e mobilidade (2023)",
+  "pergunta": "Pessoas pretas e pardas se deslocam de modo diferente das brancas?",
+  "tema": "emergente",
+  "status": "respondida",
+  "literatura": [],
+  "indicadores": [
+   "ind_mob_raca",
+   "tempo_trab_raca",
+   "coletivo_raca"
+  ],
+  "vista": {
+   "modo": "pesquisas"
+  },
+  "achado": {
+   "texto": "Em 2023 pretos e pardos fazem praticamente o mesmo número de viagens por habitante que brancos (1,67 contra 1,68), mas usam mais o transporte coletivo (38% contra 31% das viagens) e levam 6 minutos a mais nas viagens ao trabalho (48 contra 42 min). O quintil médio de renda per capita é 2,8 contra 3,7.",
+   "texto_template": "Em 2023 pretos e pardos fazem praticamente o mesmo número de viagens por habitante que brancos ({pp} contra {br}), mas usam mais o transporte coletivo ({col_pp} contra {col_br} das viagens) e levam {dif} minutos a mais nas viagens ao trabalho ({t_pp} contra {t_br} min). O quintil médio de renda per capita é {q_pp} contra {q_br}.",
+   "valores": {
+    "pp": {
+     "fonte": "sistema",
+     "medida": "ind_mob_raca",
+     "categoria": "preta_parda",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "dec2",
+     "valor": 1.6734302651901072
+    },
+    "br": {
+     "fonte": "sistema",
+     "medida": "ind_mob_raca",
+     "categoria": "branca",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "dec2",
+     "valor": 1.6825998011217393
+    },
+    "col_pp": {
+     "fonte": "sistema",
+     "medida": "coletivo_raca",
+     "categoria": "preta_parda",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "pct0",
+     "valor": 0.38400286904095615
+    },
+    "col_br": {
+     "fonte": "sistema",
+     "medida": "coletivo_raca",
+     "categoria": "branca",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "pct0",
+     "valor": 0.3139311373908538
+    },
+    "t_pp": {
+     "fonte": "sistema",
+     "medida": "tempo_trab_raca",
+     "categoria": "preta_parda",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "int",
+     "valor": 47.897876943660556
+    },
+    "t_br": {
+     "fonte": "sistema",
+     "medida": "tempo_trab_raca",
+     "categoria": "branca",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "int",
+     "valor": 41.94690732634991
+    },
+    "dif": {
+     "fonte": "expr",
+     "op": "diff",
+     "a": "t_pp",
+     "b": "t_br",
+     "fmt": "int",
+     "valor": 5.950969617310648
+    },
+    "q_pp": {
+     "fonte": "sistema",
+     "medida": "quintil_medio_raca",
+     "categoria": "preta_parda",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "dec1",
+     "valor": 2.807883721696714
+    },
+    "q_br": {
+     "fonte": "sistema",
+     "medida": "quintil_medio_raca",
+     "categoria": "branca",
+     "ed": 2023,
+     "univ": "edicao",
+     "fmt": "dec1",
+     "valor": 3.6524329481607123
+    }
+   }
+  },
+  "comparabilidade": [
+   "Raça/cor só existe em 2023 (autodeclarada); grupos amarela, indígena e sem declaração ficam fora da comparação (<3% da amostra)."
+  ],
+  "dados": [
+   "OD Metrô-SP 1977–2023 (série harmonizada)"
+  ]
+ },
+ {
+  "id": 20,
+  "slug": "acessibilidade-transporte-publico",
+  "titulo": "Acessibilidade por transporte público",
+  "pergunta": "Quantos empregos se alcançam em 30/45/60 min de transporte público, por área?",
+  "tema": "recorrente",
+  "status": "aguarda_dados",
+  "literatura": [
+   {
+    "autores": "Boisjoly, G.; Moreno-Monroy, A. I.; El-Geneidy, A.",
+    "ano": 2017,
+    "titulo": "Informality and accessibility to jobs by public transit: Evidence from the São Paulo Metropolitan Region",
+    "onde": "Journal of Transport Geography 64, 89-96",
+    "doi": "10.1016/j.jtrangeo.2017.08.011"
+   }
+  ],
+  "indicadores": [
+   "cma30",
+   "cma45",
+   "cma60"
+  ],
+  "vista": {
+   "modo": "mapa"
+  },
+  "achado": {
+   "texto": "Aguardando a camada de acessibilidade (AOP/IPEA e GTFS): sem ela, o atlas mede acesso só por distância (pergunta 6).",
+   "valores": {}
+  },
+  "comparabilidade": [
+   "Requer GTFS de SPTrans/EMTU/Metrô/CPTM ou AOP-IPEA (2017–2019)."
+  ],
+  "dados": [],
+  "pendencias": [
+   "F6: AOP-IPEA, GTFS."
+  ]
+ },
+ {
+  "id": 21,
+  "slug": "empregos-formais-e-oferta",
+  "titulo": "Empregos formais e oferta de trabalho",
+  "pergunta": "Onde estão os empregos formais (RAIS) frente aos declarados na OD?",
+  "tema": "recorrente",
+  "status": "aguarda_dados",
+  "literatura": [],
+  "indicadores": [
+   "empregos_rais",
+   "empregos_od"
+  ],
+  "vista": {
+   "modo": "mapa"
+  },
+  "achado": {
+   "texto": "Aguardando a RAIS pública por município/distrito para comparar o emprego formal com os locais de trabalho declarados na OD.",
+   "valores": {}
+  },
+  "comparabilidade": [
+   "RAIS pública cobre só o emprego formal; distrito só na capital."
+  ],
+  "dados": [],
+  "pendencias": [
+   "F6: RAIS pública (PDET)."
+  ]
+ }
+]

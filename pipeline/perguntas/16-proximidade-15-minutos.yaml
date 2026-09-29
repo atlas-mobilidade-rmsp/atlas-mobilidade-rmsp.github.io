@@ -1,0 +1,53 @@
+id: 16
+slug: proximidade-15-minutos
+titulo: Cidade de 15 minutos
+pergunta: Quanto da vida cotidiana se resolve a pé e perto de casa?
+tema: emergente
+status: parcial
+literatura:
+- autores: Moreno, C.; Allam, Z.; Chabaud, D.; Gall, C.; Pratlong, F.
+  ano: 2021
+  titulo: 'Introducing the ''15-Minute City'': Sustainability, resilience and place identity in future post-pandemic
+    cities'
+  onde: Smart Cities 4(1), 93-111
+  doi: 10.3390/smartcities4010006
+indicadores:
+- pct_ape_ate15
+- cnefe
+vista:
+  modo: mapa
+  ed: 2023
+  nivel: muni
+  metrica: pct_ape_ate15
+achado:
+  texto: Em 2023, {ape} das viagens da região são a pé; em São Paulo, {sp} das viagens são a pé e duram até 15 minutos,
+    contra {gru} em Guarulhos.
+  valores:
+    ape:
+      fonte: sistema
+      medida: divisao_modal
+      categoria: a_pe
+      ed: 2023
+      univ: edicao
+      fmt: pct0
+    sp:
+      fonte: ind
+      nivel: muni
+      codigo: '3550308'
+      ed: 2023
+      campo: pct_ape_ate15
+      fmt: pct0
+    gru:
+      fonte: ind
+      nivel: muni
+      codigo: '3518800'
+      ed: 2023
+      campo: pct_ape_ate15
+      fmt: pct0
+comparabilidade:
+- A pé até 15 min mede o comportamento observado, não a oferta de serviços a 15 minutos.
+dados:
+- OD Metrô-SP 1977–2023 (série harmonizada)
+- CNEFE 2022 (endereços por uso)
+pendencias:
+- Oferta de destinos essenciais a 15 min (CNEFE) por unidade — cruzar com a caminhada.

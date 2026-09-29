@@ -1,0 +1,52 @@
+id: 17
+slug: pobreza-de-tempo
+titulo: Pobreza de tempo
+pergunta: O tempo diário gasto em deslocamentos difere entre classes?
+tema: emergente
+status: parcial
+literatura:
+- autores: Vickery, C.
+  ano: 1977
+  titulo: 'The time-poor: a new look at poverty'
+  onde: Journal of Human Resources 12(1), 27-48
+- autores: Pereira, R. H. M.; Schwanen, T.
+  ano: 2013
+  titulo: 'Tempo de deslocamento casa-trabalho no Brasil (1992-2009): diferenças entre regiões metropolitanas, níveis
+    de renda e sexo'
+  onde: IPEA, Texto para Discussão 1813
+indicadores:
+- tempo_diario_viajante
+vista:
+  modo: pesquisas
+achado:
+  texto: Entre quem viaja, o quintil mais pobre gasta {q1} minutos por dia em deslocamentos e o quarto quintil,
+    {q4} (2023), e o quintil mais rico, {q5} — o tempo diário de deslocamento não cresce de forma monótona com a
+    renda.
+  valores:
+    q1:
+      fonte: sistema
+      medida: tempo_diario_viajante
+      categoria: q1
+      ed: 2023
+      univ: edicao
+      fmt: int
+    q4:
+      fonte: sistema
+      medida: tempo_diario_viajante
+      categoria: q4
+      ed: 2023
+      univ: edicao
+      fmt: int
+    q5:
+      fonte: sistema
+      medida: tempo_diario_viajante
+      categoria: q5
+      ed: 2023
+      univ: edicao
+      fmt: int
+comparabilidade:
+- Só tempo de deslocamento de quem viaja; pobreza de tempo plena exige jornada de trabalho e cuidado (não disponíveis).
+dados:
+- OD Metrô-SP 1977–2023 (série harmonizada)
+pendencias:
+- Tempo de trabalho e de cuidado não pago (fora da OD).

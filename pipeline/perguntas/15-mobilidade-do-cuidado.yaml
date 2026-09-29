@@ -1,0 +1,80 @@
+id: 15
+slug: mobilidade-do-cuidado
+titulo: Mobilidade do cuidado
+pergunta: As mulheres concentram as viagens de cuidado (compras e saúde)?
+tema: emergente
+status: parcial
+literatura:
+- autores: Sánchez de Madariaga, I.
+  ano: 2013
+  titulo: 'The mobility of care: a new concept in urban transportation'
+  onde: in Fair Shared Cities, Ashgate
+indicadores:
+- cuidado_sexo
+vista:
+  modo: pesquisas
+achado:
+  texto: Em 2023, {f} das viagens das mulheres têm como destino compras ou saúde, contra {m} das viagens dos homens
+    ({r} vezes mais). Em 1977 a razão era de {r77}.
+  valores:
+    f:
+      fonte: sistema
+      medida: cuidado_sexo
+      categoria: feminino
+      ed: 2023
+      univ: edicao
+      fmt: pct1
+    m:
+      fonte: sistema
+      medida: cuidado_sexo
+      categoria: masculino
+      ed: 2023
+      univ: edicao
+      fmt: pct1
+    r:
+      fonte: expr
+      op: ratio
+      a: f_
+      b: m_
+      fmt: dec1
+    f_:
+      fonte: sistema
+      medida: cuidado_sexo
+      categoria: feminino
+      ed: 2023
+      univ: edicao
+      fmt: dec2
+    m_:
+      fonte: sistema
+      medida: cuidado_sexo
+      categoria: masculino
+      ed: 2023
+      univ: edicao
+      fmt: dec2
+    r77:
+      fonte: expr
+      op: ratio
+      a: f77_
+      b: m77_
+      fmt: dec1
+    f77_:
+      fonte: sistema
+      medida: cuidado_sexo
+      categoria: feminino
+      ed: 1977
+      univ: edicao
+      fmt: dec2
+    m77_:
+      fonte: sistema
+      medida: cuidado_sexo
+      categoria: masculino
+      ed: 1977
+      univ: edicao
+      fmt: dec2
+comparabilidade:
+- 'Proxy: compras + saúde no destino. Acompanhar dependentes (escola, levar filhos) não é identificável de forma
+  harmonizada.'
+dados:
+- OD Metrô-SP 1977–2023 (série harmonizada)
+pendencias:
+- Encadeamento de viagens (tripchaining) e acompanhamento de dependentes.

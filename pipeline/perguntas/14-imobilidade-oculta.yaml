@@ -1,0 +1,103 @@
+id: 14
+slug: imobilidade-oculta
+titulo: 'Imobilidade oculta: quem fica em casa?'
+pergunta: A imobilidade diária difere por sexo e idade?
+tema: emergente
+status: respondida
+literatura:
+- autores: Lucas, K.
+  ano: 2012
+  titulo: 'Transport and social exclusion: Where are we now?'
+  onde: Transport Policy 20, 105-113
+  doi: 10.1016/j.tranpol.2012.01.013
+indicadores:
+- imob_sexo
+- imob_idade
+vista:
+  modo: pesquisas
+achado:
+  texto: Em 2023, {fem} das mulheres e {mas} dos homens de 15 anos ou mais não se deslocaram no dia, contra {fem77}
+    e {mas77} em 1977 — a lacuna de gênero encolheu de {gap77} para {gap23} pontos percentuais porque a imobilidade
+    masculina subiu e a feminina caiu. Entre idosos (60+) a imobilidade é de {ido}.
+  valores:
+    fem:
+      fonte: sistema
+      medida: imob_sexo
+      categoria: feminino
+      ed: 2023
+      univ: edicao
+      fmt: pct0
+    mas:
+      fonte: sistema
+      medida: imob_sexo
+      categoria: masculino
+      ed: 2023
+      univ: edicao
+      fmt: pct0
+    fem77:
+      fonte: sistema
+      medida: imob_sexo
+      categoria: feminino
+      ed: 1977
+      univ: edicao
+      fmt: pct0
+    mas77:
+      fonte: sistema
+      medida: imob_sexo
+      categoria: masculino
+      ed: 1977
+      univ: edicao
+      fmt: pct0
+    gap77:
+      fonte: expr
+      op: diff
+      a: fem77_
+      b: mas77_
+      fmt: pp1
+    fem77_:
+      fonte: sistema
+      medida: imob_sexo
+      categoria: feminino
+      ed: 1977
+      univ: edicao
+      fmt: dec2
+    mas77_:
+      fonte: sistema
+      medida: imob_sexo
+      categoria: masculino
+      ed: 1977
+      univ: edicao
+      fmt: dec2
+    gap23:
+      fonte: expr
+      op: diff
+      a: fem23_
+      b: mas23_
+      fmt: pp1
+    fem23_:
+      fonte: sistema
+      medida: imob_sexo
+      categoria: feminino
+      ed: 2023
+      univ: edicao
+      fmt: dec2
+    mas23_:
+      fonte: sistema
+      medida: imob_sexo
+      categoria: masculino
+      ed: 2023
+      univ: edicao
+      fmt: dec2
+    ido:
+      fonte: sistema
+      medida: imob_idade
+      categoria: 60+
+      ed: 2023
+      univ: edicao
+      fmt: pct0
+comparabilidade:
+- 1977 cobre só a área central pesquisada (~95% da população); use o universo 'área comparável de 1977' para séries
+  estritas.
+- Um dia útil de pesquisa.
+dados:
+- OD Metrô-SP 1977–2023 (série harmonizada)

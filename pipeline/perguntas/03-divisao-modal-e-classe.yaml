@@ -1,0 +1,64 @@
+id: 3
+slug: divisao-modal-e-classe
+titulo: Divisão modal por classe de renda
+pergunta: Como a escolha do modo varia com a renda, e o que mudou?
+tema: recorrente
+status: respondida
+literatura:
+- autores: Vasconcellos, E. A.
+  ano: 2001
+  titulo: 'Transporte urbano, espaço e equidade: análise das políticas públicas'
+  onde: Annablume
+indicadores:
+- coletivo_q
+- individual_q
+- ape_q
+vista:
+  modo: pesquisas
+achado:
+  texto: Em 2023, {col_q1} das viagens do quintil mais pobre são feitas por transporte coletivo, contra {col_q5}
+    no quintil mais rico; o transporte individual motorizado responde por {ind_q1} e {ind_q5} das viagens desses
+    grupos. Em 1977 o coletivo respondia por {col_q1_77} no quintil mais pobre.
+  valores:
+    col_q1:
+      fonte: sistema
+      medida: coletivo_q
+      categoria: q1
+      ed: 2023
+      univ: edicao
+      fmt: pct0
+    col_q5:
+      fonte: sistema
+      medida: coletivo_q
+      categoria: q5
+      ed: 2023
+      univ: edicao
+      fmt: pct0
+    ind_q1:
+      fonte: sistema
+      medida: individual_q
+      categoria: q1
+      ed: 2023
+      univ: edicao
+      fmt: pct0
+    ind_q5:
+      fonte: sistema
+      medida: individual_q
+      categoria: q5
+      ed: 2023
+      univ: edicao
+      fmt: pct0
+    col_q1_77:
+      fonte: sistema
+      medida: coletivo_q
+      categoria: q1
+      ed: 1977
+      univ: edicao
+      fmt: pct0
+comparabilidade:
+- 'Renda: renda familiar per capita deflacionada (INPC); quintis por edição. 1977 tem 6,8% sem declaração (grupo
+  ''nd'').'
+- 1977 cobre só a área central pesquisada (~95% da população); use o universo 'área comparável de 1977' para séries
+  estritas.
+dados:
+- OD Metrô-SP 1977–2023 (série harmonizada)

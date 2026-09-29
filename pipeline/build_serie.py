@@ -46,6 +46,12 @@ def sistema_serie() -> pd.DataFrame:
                       (a, "area1977", f"mtl_{imp}", "obs", r["mtl_obs"], p["n_pares_obs"]),
                       (a, "area1977", f"excesso_{imp}", "amc75", r.get("excesso", np.nan), p["n_pares_obs"]),
                       (a, "area1977", f"utilizacao_{imp}", "amc75", r.get("utilizacao_capacidade", np.nan), p["n_pares_obs"])]
+        inc = p["dist_km"].get("incl_domicilio")
+        if inc:
+            extra += [(a, "area1977", "beta_dist_km_incl", "exp", inc["beta"], p["n_pares_obs"]), (a, "area1977", "mtl_dist_km_incl", "obs", inc["mtl_obs"], p["n_pares_obs"]),
+                      (a, "area1977", "excesso_dist_km_incl", "amc75", inc["excesso"], p["n_pares_obs"]), (a, "area1977", "autocont_sistema_incl", "amc75", inc["autocont_sistema"], p["n_pares_obs"])]
+        if "autocont_sistema" in p["dist_km"]:
+            extra.append((a, "area1977", "autocont_sistema", "amc75", p["dist_km"]["autocont_sistema"], p["n_pares_obs"]))
         g = pd.read_parquet(PROCESSED / str(a) / "gravitacional.parquet")
         g = g[g.nivel == "amc75"]
         pop = pd.read_parquet(PROCESSED / str(a) / "indicadores.parquet")

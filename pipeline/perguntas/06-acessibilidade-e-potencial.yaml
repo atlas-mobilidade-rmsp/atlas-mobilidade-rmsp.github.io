@@ -1,0 +1,59 @@
+id: 6
+slug: acessibilidade-e-potencial
+titulo: Desigualdade de acesso a empregos
+pergunta: Quão desigual é o acesso a empregos entre as áreas da metrópole (potencial de Hansen)?
+tema: recorrente
+status: parcial
+literatura:
+- autores: Hansen, W. G.
+  ano: 1959
+  titulo: How accessibility shapes land use
+  onde: Journal of the American Institute of Planners 25(2), 73-76
+- autores: Boisjoly, G.; Moreno-Monroy, A. I.; El-Geneidy, A.
+  ano: 2017
+  titulo: 'Informality and accessibility to jobs by public transit: Evidence from the São Paulo Metropolitan Region'
+  onde: Journal of Transport Geography 64, 89-96
+  doi: 10.1016/j.jtrangeo.2017.08.011
+indicadores:
+- hansen_emp
+- gini_hansen_emp
+vista:
+  modo: mapa
+  ed: 2023
+  nivel: amc75
+achado:
+  texto: O Gini do potencial de empregos entre as AMC (ponderado pela população) caiu de {g77} em 1977 para {g97}
+    em 1997 — mesmo tratamento dos dados — e chegou a {g23} em 2023. A partir de 2007 o β é calibrado sem quem trabalha
+    em casa ou sem local fixo, o que reduz a comparabilidade com o período anterior; a queda até 1997 é a leitura
+    mais segura.
+  valores:
+    g77:
+      fonte: sistema
+      medida: gini_hansen_emp
+      categoria: amc75
+      ed: 1977
+      univ: area1977
+      fmt: dec2
+    g97:
+      fonte: sistema
+      medida: gini_hansen_emp
+      categoria: amc75
+      ed: 1997
+      univ: area1977
+      fmt: dec2
+    g23:
+      fonte: sistema
+      medida: gini_hansen_emp
+      categoria: amc75
+      ed: 2023
+      univ: area1977
+      fmt: dec2
+comparabilidade:
+- Acessibilidade aqui é por distância (centroides), não por tempo de transporte público real.
+- β difere por edição; Gini de potenciais com β distintos deve ser lido como ordem de grandeza.
+- Trabalho em casa e sem endereço fixo só é identificável de 2007 em diante; 1977–1997 os incluem como deslocamento
+  intra-zonal (ruptura de tratamento).
+dados:
+- OD Metrô-SP 1977–2023 (série harmonizada)
+pendencias:
+- Acessibilidade por tempo de transporte público (GTFS/AOP-IPEA) — F6.

@@ -32,3 +32,12 @@
     (zona → unidade dominante; aproximação). `sistema.py` calcula a série do sistema em dois universos (`edicao`,
     `area1977`); `build_serie.py` só lê data/processed. Checagem: índice de mobilidade q1→q5 reproduz 1,48→2,7 (1977) e
     1,6→1,8 (2023).
+12. **F6 — RAIS pública.** `pipeline/rais.py` agrega os microdados públicos de vínculos da RAIS (SP; 2007, 2017 e 2023 — os
+    anos da OD) por município de trabalho e divisão CNAE 2.0; vínculos ativos em 31/12; leitura em blocos (o arquivo
+    extraído tem 5–9 GB e o disco não comporta os três ao mesmo tempo, então extrai-se um, agrega-se e apaga-se).
+    Só município inteiro: o distrito da capital vem quase sempre não informado. "Município Trab" vale só quando tem 6
+    dígitos numéricos ≠ 000000/999999 (em 2007 o não informado é `0000-1`, em 2023 `999999`); senão usa-se o município do
+    estabelecimento. Remuneração em SM = o menor dos dois campos "Nom"/"(SM)" por linha (em 2023 há blocos com os campos
+    trocados); vínculos sem remuneração ficam fora da média, nunca como zero. A razão RAIS/OD não mede formalidade (a OD
+    conta moradores da RMSP com local fixo, informais incluídos; a RAIS conta todos os vínculos formais no município,
+    inclusive de quem mora fora). O agregado estadual fica em `data/interim` (não publicado); publica-se só `rais_muni`.

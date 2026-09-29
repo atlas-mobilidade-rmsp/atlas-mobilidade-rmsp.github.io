@@ -18,5 +18,10 @@ Matriz casa–trabalho completa (ocupados com local fixo). Modelo duplamente res
 ## Auditoria (checkpoint F4)
 Uma auditoria independente identificou que trabalho em casa e sem endereço fixo (`trab1_re` = 1 ou 3, presente de 2007 em diante) entrava na matriz como pseudo-deslocamento intra-zonal, contaminando autocontenção, β e excesso, e criando uma quebra artificial entre 1997 e 2007. Correção: a versão principal exclui esses ocupados de 2007 em diante; a versão "comparável" mantém o tratamento de 1977–1997. Na versão comparável, β (≈ 0,26/km) e excesso (≈ 34–35%) são estáveis; a versão com local fixo (2007–2023) mostra excesso de 36% a 38%. Também foram corrigidos: unidades sem residentes amostrados (agora presentes nos totais) e rótulos de faixas.
 
+## RAIS (emprego formal)
+Vínculos ativos em 31/12 da RAIS pública (MTE) para 2007, 2017 e 2023, por município de trabalho, grupo setorial (CNAE 2.0)
+e remuneração média em salários mínimos (`data/processed/rais/rais_muni.parquet`). Compara-se com `empregos_od`, mas a razão
+RAIS/OD não mede formalidade: universos diferentes (ver DECISOES nº 12 e pergunta 21). Sem resolução abaixo do município.
+
 ## Limitações conhecidas
 Renda individual tem alta recusa (usa-se a familiar); imputação de renda familiar cresce de 11% a ~55%; deff = 1 até a calibração por bootstrap; escolha de modo não distingue táxi de aplicativo; pesquisa de um dia útil; distâncias entre centroides não são rede viária.

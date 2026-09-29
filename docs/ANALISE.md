@@ -400,19 +400,22 @@ Pesquisa Origem e Destino do Metrô-SP (1977, 1987, 1997, 2007, 2017, 2023) harm
 
 **Pergunta.** Onde estão os empregos formais (RAIS) frente aos declarados na OD?
 
-**Status.** aguarda dados · tema recorrente
+**Status.** respondida · tema recorrente
 
 **Indicadores.** empregos_rais, empregos_od
 
-**Vista.** `?modo=mapa`
+**Vista.** `?modo=mapa&ed=2023&n=muni&m=jobs_housing`
 
-**Achado.** Aguardando a RAIS pública por município/distrito para comparar o emprego formal com os locais de trabalho declarados na OD.
+**Achado.** Nos 39 municípios do atlas, a RAIS registra 8,1 milhões de vínculos formais ativos em 2023 (eram 6,1 milhões em 2007), contra 7,9 milhões de empregos declarados pelos moradores na OD (7,5 milhões em 2007). A razão RAIS/OD foi de 0,81 para 1,03. Na capital, a indústria caiu de 12% para 7% dos vínculos e os serviços subiram de 37% para 48%.
 
 **Comparabilidade.**
-- RAIS pública cobre só o emprego formal; distrito só na capital.
+- A razão RAIS/OD NÃO mede formalidade. A OD conta o emprego principal declarado por moradores da RMSP com local de trabalho fixo (inclui informais e autônomos); a RAIS conta todos os vínculos formais ativos em 31/12 no município, inclusive de quem mora fora da RMSP e de quem tem mais de um vínculo.
+- A RAIS pública só tem município do estabelecimento (ou do trabalho, quando informado): o campo de distrito existe apenas na capital e vem quase sempre não informado; não há zona nem área de ponderação.
+- Só 2007, 2017 e 2023 (mesmos anos da OD). O ano-calendário da RAIS é o da OD, mas a OD é uma pesquisa de meses de referência diferentes.
+- Remuneração média em salários mínimos, sobre os 93%–98% de vínculos com valor declarado.
 
 **Pendências.**
-- F6: RAIS pública (PDET).
+- Distritos da capital (campo quase sempre não informado) e RAIS identificada, que exige acordo de acesso.
 
 ## 4. Comparabilidade e limitações
 

@@ -9,3 +9,4 @@ pyogrio
 pytest
 pyyaml
 jsonschema
+py7zr

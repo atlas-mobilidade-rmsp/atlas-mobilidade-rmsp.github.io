@@ -98,3 +98,7 @@ export async function acessibilidadeUnidade(nivel: Nivel, ed: number, codigo: st
   const t = await parquet("acessibilidade/acess_2019.parquet");
   return consultar<Linha>(`select modo, medida, valor, cobertura from ${t} where nivel=${lit(nivel)} and edicao=${nivel === "zona" ? 2023 : 0} and codigo=${lit(codigo)}`);
 }
+export async function empregoFormal(codigo: string): Promise<Linha[]> {
+  const t = await parquet("rais/rais_muni.parquet");
+  return consultar<Linha>(`select * from ${t} where codigo=${lit(codigo)} order by ano`);
+}

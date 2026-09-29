@@ -1710,25 +1710,112 @@
   "titulo": "Empregos formais e oferta de trabalho",
   "pergunta": "Onde estão os empregos formais (RAIS) frente aos declarados na OD?",
   "tema": "recorrente",
-  "status": "aguarda_dados",
+  "status": "respondida",
   "literatura": [],
   "indicadores": [
    "empregos_rais",
    "empregos_od"
   ],
   "vista": {
-   "modo": "mapa"
+   "modo": "mapa",
+   "ed": 2023,
+   "nivel": "muni",
+   "metrica": "jobs_housing"
   },
   "achado": {
-   "texto": "Aguardando a RAIS pública por município/distrito para comparar o emprego formal com os locais de trabalho declarados na OD.",
-   "valores": {}
+   "texto": "Nos 39 municípios do atlas, a RAIS registra 8,1 milhões de vínculos formais ativos em 2023 (eram 6,1 milhões em 2007), contra 7,9 milhões de empregos declarados pelos moradores na OD (7,5 milhões em 2007). A razão RAIS/OD foi de 0,81 para 1,03. Na capital, a indústria caiu de 12% para 7% dos vínculos e os serviços subiram de 37% para 48%.",
+   "texto_template": "Nos 39 municípios do atlas, a RAIS registra {r23} milhões de vínculos formais ativos em 2023 (eram {r07} milhões em 2007), contra {o23} milhões de empregos declarados pelos moradores na OD ({o07} milhões em 2007). A razão RAIS/OD foi de {z07} para {z23}. Na capital, a indústria caiu de {i07} para {i23} dos vínculos e os serviços subiram de {s07} para {s23}.",
+   "valores": {
+    "r23": {
+     "fonte": "rais",
+     "ano": 2023,
+     "campo": "vinculos",
+     "fmt": "mi1",
+     "valor": 8110030.0
+    },
+    "r07": {
+     "fonte": "rais",
+     "ano": 2007,
+     "campo": "vinculos",
+     "fmt": "mi1",
+     "valor": 6104807.0
+    },
+    "o23": {
+     "fonte": "rais",
+     "ano": 2023,
+     "campo": "empregos_od",
+     "fmt": "mi1",
+     "valor": 7853873.632006302
+    },
+    "o07": {
+     "fonte": "rais",
+     "ano": 2007,
+     "campo": "empregos_od",
+     "fmt": "mi1",
+     "valor": 7506882.061490662
+    },
+    "z23": {
+     "fonte": "expr",
+     "op": "ratio",
+     "a": "r23",
+     "b": "o23",
+     "fmt": "dec2",
+     "valor": 1.032615290237139
+    },
+    "z07": {
+     "fonte": "expr",
+     "op": "ratio",
+     "a": "r07",
+     "b": "o07",
+     "fmt": "dec2",
+     "valor": 0.8132280419479178
+    },
+    "i07": {
+     "fonte": "rais",
+     "ano": 2007,
+     "campo": "pct_industria",
+     "codigo": "3550308",
+     "fmt": "pct0",
+     "valor": 0.12376408879214963
+    },
+    "i23": {
+     "fonte": "rais",
+     "ano": 2023,
+     "campo": "pct_industria",
+     "codigo": "3550308",
+     "fmt": "pct0",
+     "valor": 0.06869410013517405
+    },
+    "s07": {
+     "fonte": "rais",
+     "ano": 2007,
+     "campo": "pct_servicos",
+     "codigo": "3550308",
+     "fmt": "pct0",
+     "valor": 0.3663374238916944
+    },
+    "s23": {
+     "fonte": "rais",
+     "ano": 2023,
+     "campo": "pct_servicos",
+     "codigo": "3550308",
+     "fmt": "pct0",
+     "valor": 0.47775022965911673
+    }
+   }
   },
   "comparabilidade": [
-   "RAIS pública cobre só o emprego formal; distrito só na capital."
+   "A razão RAIS/OD NÃO mede formalidade. A OD conta o emprego principal declarado por moradores da RMSP com local de trabalho fixo (inclui informais e autônomos); a RAIS conta todos os vínculos formais ativos em 31/12 no município, inclusive de quem mora fora da RMSP e de quem tem mais de um vínculo.",
+   "A RAIS pública só tem município do estabelecimento (ou do trabalho, quando informado): o campo de distrito existe apenas na capital e vem quase sempre não informado; não há zona nem área de ponderação.",
+   "Só 2007, 2017 e 2023 (mesmos anos da OD). O ano-calendário da RAIS é o da OD, mas a OD é uma pesquisa de meses de referência diferentes.",
+   "Remuneração média em salários mínimos, sobre os 93%–98% de vínculos com valor declarado."
   ],
-  "dados": [],
+  "dados": [
+   "RAIS pública, vínculos SP 2007, 2017 e 2023 (MTE/PDET)",
+   "OD Metrô-SP 2007, 2017 e 2023 (empregos_od)"
+  ],
   "pendencias": [
-   "F6: RAIS pública (PDET)."
+   "Distritos da capital (campo quase sempre não informado) e RAIS identificada, que exige acordo de acesso."
   ]
  }
 ]

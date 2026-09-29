@@ -10,6 +10,7 @@ Um valor é um objeto {fonte, ..., fmt}:
   fonte=censo    {ano_censo, campo, nivel}              -> média ponderada por população de censo_por_unidade (nivel muni)
   fonte=aop_decil {modo, medida, decil}                  -> acessibilidade/acess_decil_2019.parquet
   fonte=aop_unidade {nivel, codigo, modo, medida}        -> acessibilidade/acess_2019.parquet
+  fonte=rais     {ano, campo, codigo?}                   -> rais/rais_muni.parquet (sem codigo: soma dos municípios do atlas)
   fonte=expr     {op: ratio|diff|pct_change|mult, a, b}  -> combina outros valores do mesmo achado
 fmt: int | dec1 | dec2 | pct0 | pct1 (valor em fração -> %) | pp1 (pontos percentuais)
 """
@@ -79,6 +80,15 @@ def calcula(v: dict, ja: dict) -> float:
         if len(r) != 1:
             raise KeyError(f"aop_unidade: {len(r)} linhas para {v}")
         return float(r.valor.iloc[0])
+    if f == "rais":
+        d = pd.read_parquet(PROCESSED / "rais" / "rais_muni.parquet")
+        d = d[d.ano == v["ano"]]
+        if "codigo" in v:
+            r = d[d.codigo == str(v["codigo"])]
+            if len(r) != 1:
+                raise KeyError(f"rais: {len(r)} linhas para {v}")
+            return float(r[v["campo"]].iloc[0])
+        return float(d[v["campo"]].sum())
     if f == "censo":
         c = pd.read_parquet(PROCESSED / "censo" / "censo_por_unidade.parquet")
         c = c[(c.nivel == v.get("nivel", "muni")) & (c.ano_censo == v["ano_censo"])].dropna(subset=[v["campo"]])

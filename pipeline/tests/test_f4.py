@@ -114,3 +114,13 @@ def test_aop_acessibilidade():
     d = pd.read_parquet(PROCESSED / "acessibilidade" / "acess_decil_2019.parquet")
     tp = d[(d.modo == "tp") & (d.medida == "cma60")].set_index("decil").valor
     assert tp.loc[10] > tp.loc[1]                                                             # ricos alcançam mais empregos por TP
+
+
+def test_rais_municipio():
+    d = pd.read_parquet(PROCESSED / "rais" / "rais_muni.parquet")
+    assert set(d.ano) == {2007, 2017, 2023} and d.groupby("ano").codigo.nunique().eq(39).all()
+    assert d.codigo.str.len().eq(7).all() and not d.duplicated(["ano", "codigo"]).any()
+    assert d.rem_media_sm.between(1, 12).all()                                              # SM, não R$: pega colunas trocadas
+    assert (d[[c for c in d if c.startswith("pct_")]].sum(axis=1) <= 1 + 1e-9).all()       # agro fica fora dos grupos
+    sp = d[d.codigo == "3550308"].set_index("ano").vinculos
+    assert sp.is_monotonic_increasing and 4e6 < sp.iloc[0] < sp.iloc[-1] < 6e6            # pega município não informado (0000-1, 999999)

@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { acessibilidadeUnidade, censoUnidade, cnefeUnidade, gravitacional, vizinhos, type Linha } from "../db/queries";
+import { acessibilidadeUnidade, censoUnidade, cnefeUnidade, empregoFormal, gravitacional, vizinhos, type Linha } from "../db/queries";
 import { GraficoLinhas } from "./GraficoLinhas";
 import { num, num1, num2 } from "../lib/format";
 import type { Nivel, TipoFluxo } from "../lib/tipos";
@@ -38,6 +38,29 @@ const ROT_EST: [string, string, string, (v: number) => string][] = [
   ["t_medio_obs_dist_km", "Distância média casa–trabalho (obs.)", "Média ponderada entre centroides (km).", num1],
   ["t_medio_min_dist_km", "Distância mínima possível (realocação)", "Média se os trabalhadores fossem realocados aos empregos mais próximos (problema de transporte).", num1],
 ];
+const ANOS_RAIS = [2007, 2017, 2023] as const;
+const GRUPOS_RAIS: [string, string][] = [["pct_industria", "Indústria"], ["pct_construcao", "Construção"], ["pct_comercio", "Comércio"], ["pct_servicos", "Serviços"], ["pct_adm_publica_edu_saude", "Adm. pública, educação e saúde"]];
+function EmpregoFormal({ codigo }: { codigo: string }) {
+  const [d, setD] = useState<Linha[] | undefined>(undefined);
+  useEffect(() => { setD(undefined); empregoFormal(codigo).then(setD); }, [codigo]);
+  if (d === undefined || d.length === 0) return null;
+  const v = (ano: number, k: string) => d.find((x) => x.ano === ano)?.[k] as number | null | undefined;
+  const cel = (ano: number, k: string, f: (x: number) => string) => { const x = v(ano, k); return <td key={ano}>{x != null ? f(x) : "—"}</td>; };
+  return (
+    <section>
+      <h4>Emprego formal (RAIS)</h4>
+      <table className="tabela"><thead><tr><th></th>{ANOS_RAIS.map((a) => <th key={a}>{a}</th>)}</tr></thead><tbody>
+        <tr><th scope="row">Vínculos ativos em 31/12</th>{ANOS_RAIS.map((a) => cel(a, "vinculos", num))}</tr>
+        <tr title="Empregos declarados pelos moradores da RMSP na OD, com local de trabalho fixo neste município."><th scope="row">Empregos na OD</th>{ANOS_RAIS.map((a) => cel(a, "empregos_od", num))}</tr>
+        <tr title="Não mede formalidade: a RAIS inclui quem mora fora da RMSP e vínculos múltiplos; a OD inclui informais."><th scope="row">RAIS / OD</th>{ANOS_RAIS.map((a) => cel(a, "razao_rais_od", num2))}</tr>
+        <tr><th scope="row">Remuneração média (SM)</th>{ANOS_RAIS.map((a) => cel(a, "rem_media_sm", num2))}</tr>
+        {GRUPOS_RAIS.map(([k, r]) => <tr key={k}><th scope="row">{r} (%)</th>{ANOS_RAIS.map((a) => cel(a, k, (x) => num1(100 * x)))}</tr>)}
+      </tbody></table>
+      <p className="nota">RAIS pública (MTE): vínculos ativos em 31/12 por município de trabalho, remuneração média em salários mínimos. Só município inteiro; a razão RAIS/OD não mede formalidade (ver Perguntas, nº 21).</p>
+    </section>
+  );
+}
+
 export function AbaEstrutura({ nivel, ed, codigo, ind }: { nivel: Nivel; ed: number; codigo: string; ind?: Record<string, any> }) {
   const [g, setG] = useState<Linha | null | undefined>(undefined);
   useEffect(() => { setG(undefined); gravitacional(ed, nivel, codigo).then(setG); }, [ed, nivel, codigo]);
@@ -54,6 +77,7 @@ export function AbaEstrutura({ nivel, ed, codigo, ind }: { nivel: Nivel; ed: num
           <tr><th scope="row">Saldo pendular (empregos − ocupados)</th><td>{ind.saldo_pend != null ? num(ind.saldo_pend as number) : "—"}</td></tr>
         </>}
       </tbody></table>
+      {nivel === "muni" && <EmpregoFormal codigo={codigo} />}
       <p className="nota">Modelo gravitacional duplamente restrito (Wilson) calibrado por edição; resultados dependem da agregação territorial (MAUP). Metodologia: docs/DECISOES.md.</p>
     </div>
   );

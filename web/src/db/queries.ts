@@ -62,3 +62,34 @@ export async function umFluxo(ed: number, nivel: Nivel, tipo: TipoFluxo, o: stri
                 join ${c} cd on cd.nivel=${lit(nivel)} and cd.edicao=${eg} and cd.codigo=f.destino
     where f.tipo=${lit(tipo)} and f.origem=${lit(o)} and f.destino=${lit(d)}`))[0] ?? null;
 }
+
+export type Linha = Record<string, number | string | null>;
+export async function gravitacional(ed: number, nivel: Nivel, codigo: string): Promise<Linha | null> {
+  if (nivel === "zona") return null;
+  const t = await parquet(`${ed}/gravitacional.parquet`);
+  return (await consultar<Linha>(`select * from ${t} where nivel=${lit(nivel)} and codigo=${lit(codigo)}`))[0] ?? null;
+}
+export async function censoUnidade(nivel: Nivel, ed: number, codigo: string): Promise<Linha[]> {
+  const t = await parquet("censo/censo_por_unidade.parquet");
+  return consultar<Linha>(`select * from ${t} where nivel=${lit(nivel)} and edicao=${nivel === "zona" ? ed : 0} and codigo=${lit(codigo)} order by ano_censo`);
+}
+export async function cnefeUnidade(nivel: Nivel, ed: number, codigo: string): Promise<{ grupo: string; n: number }[]> {
+  const t = await parquet("cnefe/cnefe_por_unidade.parquet");
+  return consultar(`select grupo, sum(n_enderecos) n from ${t} where nivel=${lit(nivel)} and edicao=${nivel === "zona" ? ed : 0} and codigo=${lit(codigo)} group by 1 order by 2 desc`);
+}
+export async function unidadesSerie(nivel: string, codigo: string): Promise<Linha[]> {
+  const t = await parquet("serie/unidades_serie.parquet");
+  return consultar<Linha>(`select * from ${t} where nivel=${lit(nivel)} and codigo=${lit(codigo)} order by edicao`);
+}
+export interface MedidaSistema { edicao: number; universo: string; medida: string; categoria: string; valor: number; n: number }
+export async function sistemaSerie(): Promise<MedidaSistema[]> {
+  const t = await parquet("serie/sistema_serie.parquet");
+  return consultar<MedidaSistema>(`select edicao, universo, medida, categoria, valor, n from ${t}`);
+}
+export async function vizinhos(ed: number, nivel: Nivel, tipo: TipoFluxo, codigo: string, top = 8): Promise<{ sentido: "saem" | "chegam"; outro: string; total: number; n: number; precisao: string }[]> {
+  const f = await parquet(`${ed}/fluxos_${nivel}.parquet`);
+  const base = `from ${f} where tipo=${lit(tipo)} and origem<>destino`;
+  const a = await consultar<any>(`select 'saem' sentido, destino outro, total, n, precisao ${base} and origem=${lit(codigo)} order by total desc limit ${top}`);
+  const b = await consultar<any>(`select 'chegam' sentido, origem outro, total, n, precisao ${base} and destino=${lit(codigo)} order by total desc limit ${top}`);
+  return [...a, ...b];
+}

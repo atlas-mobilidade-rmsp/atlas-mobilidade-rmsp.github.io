@@ -11,6 +11,7 @@ import { lerUrl, montarQuery } from "./state/url";
 import { nivelDaSerie } from "./lib/serie";
 import { num, num1 } from "./lib/format";
 import { NIVEIS } from "./lib/tipos";
+import { ModoPesquisas } from "./components/ModoPesquisas";
 
 export default function App() {
   const s = useStore();
@@ -28,7 +29,7 @@ export default function App() {
     if (!pronto) return;
     const q = montarQuery(useStore.getState() as Estado);
     history.replaceState(null, "", q ? `?${q}` : location.pathname);
-  }, [pronto, s.ed, s.nivel, s.metrica, s.tipo, s.unidade, s.par, s.top, s.fmin, s.baixa, s.modo, s.trilhos]);
+  }, [pronto, s.ed, s.nivel, s.metrica, s.tipo, s.unidade, s.par, s.top, s.fmin, s.baixa, s.modo, s.trilhos, s.us, s.ms, s.univ]);
 
   useEffect(() => {
     if (!pronto) return; let vivo = true; setErro(null);
@@ -74,11 +75,13 @@ export default function App() {
       <nav className="modos" aria-label="Modo">
         <button className={s.modo === "mapa" ? "ativo" : ""} onClick={() => s.set({ modo: "mapa" })}>Mapa</button>
         <button className={s.modo === "serie" ? "ativo" : ""} onClick={() => s.set({ modo: "serie" })}>Um par ao longo das pesquisas</button>
+        <button className={s.modo === "pesquisas" ? "ativo" : ""} onClick={() => s.set({ modo: "pesquisas" })}>Ao longo das pesquisas</button>
       </nav>
     </header>
   );
 
   if (s.modo === "serie") return <ModoSerie cabecalho={cabecalho} />;
+  if (s.modo === "pesquisas") return <ModoPesquisas cabecalho={cabecalho} />;
 
   return (
     <div className="app">
@@ -95,7 +98,7 @@ export default function App() {
       </main>
       <aside className="lateral direita">
         {par && <PainelFluxo f={par} nivel={s.nivel} ed={s.ed} tipo={s.tipo} nomes={nomes} nivelSerie={nivelSerie} />}
-        {uSel && <PainelUnidade u={uSel} ind={indPor.get(uSel.codigo)} nivel={s.nivel} ed={s.ed} />}
+        {uSel && <PainelUnidade u={uSel} ind={indPor.get(uSel.codigo)} nivel={s.nivel} ed={s.ed} tipo={s.tipo} nomes={nomes} />}
         {!par && !uSel && <p className="nota">Selecione uma unidade no mapa para ver seus indicadores e os fluxos que entram e saem dela, ou um fluxo para ver o perfil e a série.</p>}
       </aside>
     </div>

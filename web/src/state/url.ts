@@ -13,7 +13,10 @@ export function lerUrl(p: URLSearchParams): Partial<Estado> {
   const top = Number(p.get("top")); if (top >= 1 && top <= 500) e.top = Math.floor(top);
   const fmin = Number(p.get("fmin")); if (p.get("fmin") && fmin >= 0 && fmin <= 1) e.fmin = fmin;
   if (p.get("baixa") === "1") e.baixa = true;
-  if (p.get("modo") === "serie") e.modo = "serie";
+  const md = p.get("modo"); if (md === "serie" || md === "pesquisas") e.modo = md;
+  if (p.get("us")?.includes(":")) e.us = p.get("us");
+  if (p.get("ms")) e.ms = p.get("ms")!;
+  if (p.get("univ") === "area1977") e.univ = "area1977";
   if (p.get("tri") === "0") e.trilhos = false;
   return e;
 }
@@ -29,6 +32,9 @@ export function montarQuery(e: Estado): string {
   if (e.fmin > 0) p.set("fmin", String(e.fmin));
   if (e.baixa) p.set("baixa", "1");
   if (e.modo !== "mapa") p.set("modo", e.modo);
+  if (e.us) p.set("us", e.us);
+  if (e.ms !== PADRAO.ms) p.set("ms", e.ms);
+  if (e.univ !== PADRAO.univ) p.set("univ", e.univ);
   if (!e.trilhos) p.set("tri", "0");
   return p.toString();
 }

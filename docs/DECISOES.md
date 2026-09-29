@@ -19,3 +19,8 @@
    Quintil de renda: renda familiar per capita r2023, ponderado por pessoa, por edição; sem renda → `nd`.
    Limitações abertas: `pct_hibrido/remoto/app/moto` e raça (2023) e distância/coordenadas ficam para depois
    (variáveis fora da série harmonizada); mediana ponderada de renda idem; `hansen_*`, `autocont` e gravidade são F4.
+10. **F3 — web MVP.** Front-end novo e enxuto (React 19 + deck.gl `OrthographicView` + DuckDB-WASM sobre os Parquet
+    publicados); reaproveitados da referência apenas `lib/fluxos.ts`, `arcos.ts`, `contraste.ts`, `format.ts` e
+    `tokens.css`. Estado na URL (`ed, n, m, t, u, o, d, top, fmin, baixa, modo, tri`). `SerieDoPar` resolve zona→AMC via
+    `unidades_ref_geo`; `sub` não tem série. Casa–trabalho não tem modo/duração (vem de `pessoas`). Nomes de AMC =
+    "AMC n · zona dominante (município)". Bundle: 375 kB gz de JS (orçamento 600 kB).

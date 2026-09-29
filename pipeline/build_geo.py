@@ -115,6 +115,19 @@ def unidades_ref() -> pd.DataFrame:
             linhas.append(dict(nivel=nivel, edicao=0, codigo=cod, nome=nome, area_km2=geom.area / 1e6, muni_ibge=cod if nivel == "muni" else None))
     u = pd.DataFrame(linhas)
     a75 = set(gpd.read_file(TMP / "amc75.geojson").codigo)
+    # nome legível das AMC: "AMC n · município dominante" (por área das zonas de 2023)
+    z23 = u[(u.nivel == "zona") & (u.edicao == 2023)]
+    nm_muni = dict(zip(mu.codigo, mu.nome))
+    for nivel, col in (("amc146", "amc_8723"), ("amc75", "amc_7723")):
+        dom = (z23.dropna(subset=[col]).groupby([col, "muni_ibge"]).area_km2.sum().reset_index()
+               .sort_values("area_km2", ascending=False).drop_duplicates(col).set_index(col).muni_ibge)
+        maior_zona = z23.dropna(subset=[col]).sort_values("area_km2", ascending=False).drop_duplicates(col).set_index(col).nome
+        m = u.nivel == nivel
+
+        def rot(c):
+            mn = nm_muni.get(dom.get(c), "")
+            return f"AMC {c} · {maior_zona.get(c, '')} ({mn})" if mn == "São Paulo" else f"AMC {c} · {mn}"
+        u.loc[m, "nome"] = [rot(c) for c in u.loc[m, "codigo"]]
     u["na_area_1977"] = (u.nivel == "amc75") | (u.amc_7723.isin(a75))
     return u
 
